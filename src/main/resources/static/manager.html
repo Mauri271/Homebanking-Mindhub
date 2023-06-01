@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Client Manager</title>
+</head>
+<body>
+
+<main id="app" class="d-flex col-12 justify-content-center flex-wrap">
+
+
+    <section class="d-flex flex-column col-lg-6 col-md-12" id="form">
+
+        <h1 class="text-center">Client Manager</h1>
+        <div class="">
+
+
+            <form @submit.prevent="addClient">
+
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">Name</label>
+                    <input v-model="clientData.firstName" type="text" class="form-control" id="firstName">
+                </div>
+                <div class="mb-3">
+                    <label for="Lastname" class="form-label">Last Name</label>
+                    <input v-model="clientData.lastName" type="text" class="form-control" id="Lastname">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input v-model="clientData.email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add client</button>
+            </form>
+
+
+        </div>
+
+        <div id="table" class="mt-5">
+
+            <table class="table">
+                <thead >
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Delete Client</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="client of clients" >
+                    <td>{{client.firstName}}</td>
+                    <td>{{client.lastName}}</td>
+                    <td>{{client.email}}</td>
+                    <td><button @click="deleteId(client._links.client.href)" type="button" class="btn btn-danger">Delete Client</button></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
+
+    <section id="rest" class="col-lg-6 col-md-12">
+        <div class="rest">
+            <h2 class="text-center">
+                Client REST Response
+            </h2>
+
+            <pre>
+            {{restResponse}}
+        </pre>
+
+        </div>
+
+    </section>
+
+
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="./manager.js"></script>
+
+</body>
+
+</html>
