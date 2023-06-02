@@ -46,18 +46,25 @@
             <table class="table">
                 <thead >
                 <tr>
+
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Delete Client</th>
+                    <th scope="col">Modify Client</th>
+
                 </tr>
                 </thead>
                 <tbody>
+
                 <tr v-for="client of clients" >
+
                     <td>{{client.firstName}}</td>
                     <td>{{client.lastName}}</td>
                     <td>{{client.email}}</td>
-                    <td><button @click="deleteId(client._links.client.href)" type="button" class="btn btn-danger">Delete Client</button></td>
+                    <td><button @click="deleteClient(client._links.client.href)" type="button" class="btn btn-danger">Delete Client</button></td>
+                    <td><button @click="editClient(client._links.client.href)" type="button" class="btn btn-warning">Modify Client</button></td>
+
                 </tr>
 
                 </tbody>

@@ -49,10 +49,8 @@
     axios.post("http://localhost:8080/clients", this.clientData)
     .then(res =>{
 
-
         this.loadData()
-        this.deleteInputs()
-      
+        this.deleteInputs()      
 
 
     }).catch(err=> console.log(err))
@@ -66,13 +64,34 @@
     },
 
 
-      deleteId(id){
+      deleteClient(id){
+
         axios.delete(id)
         .then(res=>{
           console.log(res)
           this.loadData();
-        }).catch(err=> console.log(err))
+
+        })
+        .catch(err=> console.log(err))
       },
+
+      editClient(client){
+
+        axios.patch(client, this.clientData)
+        .then(res =>{
+
+          console.log(res)
+
+          this.clientData.firstName = "";
+          this.clientData.lastName = "";
+          this.clientData.email = "";
+          this.loadData();
+
+        })
+
+        .catch(err=>console.log(err))
+
+      }
 
 
     }
