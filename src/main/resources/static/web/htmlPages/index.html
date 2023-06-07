@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
+    <link rel="stylesheet" href="../stylePages/styleAccounts.css">
+    <link rel="shortcut icon" href="../resources/echanizBank.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Home</title>
+</head>
+<body>
+
+    
+        <header>
+            
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div>
+                  <a class="navbar-brand" href="#"><img class="logo"src="../resources/echanizBank.png" alt="logo"></a>
+              <button class="navbar-toggler btn-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>                
+              </button>
+            </div>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <div class="d-flex flex-column flex-md-row justify-content-md-start ms-5" >
+                <ul id="ulNav" class="navbar-nav me-auto mb-2 mb-lg-0 ms-3 ms-md-0 d-flex me-lg-5">
+                  <li class="nav-item">
+                    <a class="nav-link  active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../htmlPages/accounts.html">Accounts</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Cards</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Investment</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Loans</a>
+                  </li>                  
+                </ul>
+            </div>
+              </div>
+              <div class="d-flex justify-content-end w-25">                                          
+          <button class="btn btnNav" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i class="bi bi-list-columns-reverse"></i>
+          </button>
+              </div>
+            </div>
+        </nav>
+        </header>
+
+        <main>      
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasExampleLabel"><img class="logoCanvas"src="../resources/echanizBank.png" alt="logo">
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column gap-4">
+              <div>
+                <form class="d-flex align-items-center text-center flex-wrap gap-3">
+                  <input class="form-control me-2" type="text" placeholder="User">
+                  <input class="form-control me-2" type="password" placeholder="Password">
+                  <button class="btn" id="logIn" type="button">Log in</button>
+                </form>
+              </div>
+              <div >
+                <ul class="d-flex flex-column gap-4 list-unstyled">
+                  <li><a class="dropdown-item" href="#"> <i class="bi bi-cash-coin me-3"></i>Debts & Credit</a></li>
+                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-piggy-bank-fill me-3"></i>Saving and Budgeting</a></li>
+                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-wallet2 me-3"></i>Investing & Retirement</a></li>
+                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-currency-exchange me-3"></i> Currency Exchange</a></li>
+                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-hand-thumbs-down me-3"></i>Taxes</a></li>
+                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-lock-fill me-3"></i>Security</a></li>
+                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-person-vcard me-3"></i>Contact</a></li>
+                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-exclamation-circle me-3"></i>Work with Us</a></li>
+                </ul>                
+              </div>
+              </div>
+            </div>
+
+        </main>
+
+    <footer class="footer">
+      <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark" transparent="false" show-symbol-logo="true"></div>
+    </footer>
+
+    
+
+<script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="../JsPages/accounts.js"></script>
+
+</body>
+</html>

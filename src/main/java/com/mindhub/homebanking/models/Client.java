@@ -1,42 +1,50 @@
 package com.mindhub.homebanking.models;
 
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name="native", strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native")
 
-     private long id;
+    private long id;
 
-     private String firstName;
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private Set<Accounts> accounts = new HashSet<>();
 
-     private String lastName;
+    private String firstName;
 
-     private String email;
+    private String lastName;
 
-     public Client(){}
+    private String email;
 
-    public long getId() {
-        return id;
+    public Client() {
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Client(String firstName, String lastName, String email){
+    public Client(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
+    public Set<Accounts> getAccounts() {
+        return accounts;
+    }
+
+    public void addAccounts(Accounts account) {
+        account.setOwner(this);
+        accounts.add(account);
+    }
+
+
+    public long getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -46,19 +54,19 @@ public class Client {
         this.firstName = firstName;
     }
 
-    public String getLastName(){
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName){
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email){
+    public void setEmail(String email) {
         this.email = email;
     }
 

@@ -19,7 +19,7 @@
     methods:{
 
     loadData(){
-            axios.get("http://localhost:8080/clients")
+            axios.get("http://localhost:8080/rest/clients/")
             .then(data => {
               
               
@@ -46,7 +46,7 @@
     },
     
     postClient(){
-    axios.post("http://localhost:8080/clients", this.clientData)
+    axios.post("http://localhost:8080/rest/clients/", this.clientData)
     .then(res =>{
 
         this.loadData()
