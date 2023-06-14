@@ -4,6 +4,7 @@ createApp({
   data() {
   return {
         clients: [],
+        accounts:[],
       };
   },
 
@@ -19,6 +20,7 @@ createApp({
             
           this.clients= res.data         
           console.log(this.clients)
+          this.accounts = this.clients.accounts.sort((a,b) => a.balance - b.balance);
 
           })
           .catch(err=> console.log(err))

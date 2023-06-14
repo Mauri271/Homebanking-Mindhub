@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import java.util.Set;
+import static java.util.stream.Collectors.toSet;
 
 @RestController
 @RequestMapping("/api")
@@ -18,8 +16,8 @@ public class ClientController {
     private ClientRepository clientRepository;
 
     @RequestMapping("/clients")
-        public List<ClientDTO> getAll() {
-        return clientRepository.findAll().stream().map(ClientDTO::new).collect(toList());
+        public Set<ClientDTO> getAll() {
+        return clientRepository.findAll().stream().map(ClientDTO::new).collect(toSet());
 
     }
 
@@ -28,4 +26,5 @@ public class ClientController {
 
         return clientRepository.findById(id).map(ClientDTO::new).orElse(null);
     }
+
 }

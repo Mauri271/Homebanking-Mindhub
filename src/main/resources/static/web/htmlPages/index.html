@@ -1,101 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
-    <link rel="stylesheet" href="../stylePages/styleAccounts.css">
-    <link rel="shortcut icon" href="../resources/echanizBank.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <meta charset="UTF-8">
 
-    <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
+  <link rel="stylesheet" href="../stylePages/styleAccounts.css">
+  <link rel="shortcut icon" href="../resources/echanizBank.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../stylePages/styleHome.css">
+
+  <title>Home</title>
 </head>
-<body>
 
-    
-        <header>
-            
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <div>
-                  <a class="navbar-brand" href="#"><img class="logo"src="../resources/echanizBank.png" alt="logo"></a>
-              <button class="navbar-toggler btn-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>                
-              </button>
-            </div>
-              <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <div class="d-flex flex-column flex-md-row justify-content-md-start ms-5" >
-                <ul id="ulNav" class="navbar-nav me-auto mb-2 mb-lg-0 ms-3 ms-md-0 d-flex me-lg-5">
-                  <li class="nav-item">
-                    <a class="nav-link  active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="../htmlPages/accounts.html">Accounts</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Cards</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Investment</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Loans</a>
-                  </li>                  
-                </ul>
-            </div>
-              </div>
-              <div class="d-flex justify-content-end w-25">                                          
-          <button class="btn btnNav" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i class="bi bi-list-columns-reverse"></i>
+<body v-if="showModal == true" style="
+background-color: rgb(173, 27, 27);">
+  <!-- ---------------------------NAVIGATION BAR--------------------------------------     -->
+  <header>
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <div>
+          <a class="navbar-brand" href="#"><img class="logo" src="../resources/echanizBank.png" alt="logo"></a>
+          <button class="navbar-toggler btn-white" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-              </div>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <div class="d-flex flex-column flex-md-row justify-content-md-start ms-5">
+            <ul id="ulNav" class="navbar-nav me-auto mb-2 mb-lg-0 ms-3 ms-md-0 d-flex me-lg-5">
+              <li class="nav-item">
+                <a class="nav-link  active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../htmlPages/accounts.html">Accounts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Cards</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Investment</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Loans</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end w-25">
+          <button class="btn btnNav" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"><i class="bi bi-list-columns-reverse"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app" class=" d-flex flex-column gap-5 mb-5">
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel"><img class="logoCanvas"
+            src="../resources/echanizBank.png" alt="logo">
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column gap-4">
+        <div>
+          <form class="d-flex align-items-center text-center flex-wrap gap-3">
+            <input class="form-control me-2" type="text" placeholder="User">
+            <input class="form-control me-2" type="password" placeholder="Password">
+            <button class="btn" id="logIn" type="button">Log in</button>
+          </form>
+        </div>
+        <div>
+          <ul class="d-flex flex-column gap-1 list-unstyled">
+            <li><a class="dropdown-item" href="#"> <i class="bi bi-cash-coin me-3"></i>Debts & Credit</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-piggy-bank-fill me-3"></i>Saving and Budgeting</a>
+            </li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-wallet2 me-3"></i>Investing & Retirement</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-currency-exchange me-3"></i> Currency Exchange</a>
+            </li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-hand-thumbs-down me-3"></i>Taxes</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-lock-fill me-3"></i>Security</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-person-vcard me-3"></i>Contact</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-exclamation-circle me-3"></i>Work with Us</a></li>
+            <hr>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- -------------------------------------CAROUSEL -------------------------------------- -->
+    <h1 class="text-center font-monospace mt-5">A new way to manage your money</h1>
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../resources/0925_Fintech_UX_Lina_Social-31eab3f21c586f118d9f8e8db75b9bcb.png"
+            class="d-block w-100 carouselImg" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../resources/Challenges-and-Opportunities-of-CBDC-for-Banks-and-Corporations-1440x564_c.jpg"
+            class="d-block w-100 carouselImg" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../resources/Payments-Banking-FinTech-roundup_-Summer-2022_.png" class="d-block w-100 carouselImg"
+            alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- ---------------------- LOAN MODAL ------------------------------------ -->
+
+    <section id="welcome" v-if="showModal == true" @click="closeModal">
+      <a href="#" id="closeButtonLoan"><i class="bi bi-x-circle-fill"></i></a>
+      <div id="divLoanPromotion" class="d-flex justify-content-center p-5 align-items-start">
+        <div id="welcomeModal" class="d-flex flex-row align-items-center justify-content-center gap-1">
+          <div id="loanModal" class="d-flex flex-column text-white align-items-center gap-4">
+            <h2>Ask for a Loan</h2>
+            <h2 id="cien"> 100% ONLINE</h2>
+            <p>Don´t need to be a client</p>
+            <p> Only with your ID</p>
+            <a href="../htmlPages/loans.html">
+              <button class="text-white" id="loanButton" type="button">Order it now!</button></a>
+          </div>
+          <div id="promotionsModal" class="d-flex flex-wrap text-white gap-2">
+            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
+              <i class="loanIcon bi bi-currency-dollar"></i>
+              <p class="pBoxes">Up to 100K USDT</p>
             </div>
-        </nav>
+            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
+              <i class="loanIcon bi bi-clock"></i>
+              <p class="pBoxes">In just 24HS</p>
+            </div>
+            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
+              <i class="loanIcon bi bi-plus-lg"></i>
+              <p class="pBoxes">Only 5% Interest</p>
+            </div>
+            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
+              <i class="loanIcon bi bi-check2"></i>
+              <p class="pBoxes">Immediate accreditation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <div class="d-flex flex-column cryptoPromotions p-5">        
+    <h2 class="text-center font-monospace mt-5">How can we help You today?</h2>
+    <section class="d-flex gap-4 flex-wrap justify-content-center ">  
+      <section class="cardHome">
+        <header class="headerCard">
+          <img src="../resources/crypto.jpg" alt="">
+        </header>
+        <div class="sectionCard">
+          <h2>Unlock the future with digital gold</h2>
+          <h3>Btc, Eth, Usdt</h3>
+          <p>Joinnin us you will recive a 15$ USDT cuppon and disccounts with our associates</p>
+      </section>
+
+      <section class="cardHome">
+        <header class="headerCard">
+          <img src="../resources/futureCrypto.jpg" alt="">
         </header>
 
-        <main>      
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasExampleLabel"><img class="logoCanvas"src="../resources/echanizBank.png" alt="logo">
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body d-flex flex-column gap-4">
-              <div>
-                <form class="d-flex align-items-center text-center flex-wrap gap-3">
-                  <input class="form-control me-2" type="text" placeholder="User">
-                  <input class="form-control me-2" type="password" placeholder="Password">
-                  <button class="btn" id="logIn" type="button">Log in</button>
-                </form>
-              </div>
-              <div >
-                <ul class="d-flex flex-column gap-4 list-unstyled">
-                  <li><a class="dropdown-item" href="#"> <i class="bi bi-cash-coin me-3"></i>Debts & Credit</a></li>
-                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-piggy-bank-fill me-3"></i>Saving and Budgeting</a></li>
-                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-wallet2 me-3"></i>Investing & Retirement</a></li>
-                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-currency-exchange me-3"></i> Currency Exchange</a></li>
-                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-hand-thumbs-down me-3"></i>Taxes</a></li>
-                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-lock-fill me-3"></i>Security</a></li>
-                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-person-vcard me-3"></i>Contact</a></li>
-                 <li> <a class="dropdown-item" href="#"> <i class="bi bi-exclamation-circle me-3"></i>Work with Us</a></li>
-                </ul>                
-              </div>
-              </div>
-            </div>
+        <div class="sectionCard">
+          <h2>Welcome to the future</h2>
+          <h3>What is crypto?</h3>
+          <p>Learn from the best experts on this community and skyrocket your wallet!</p>
+        </div>
+      </section>
 
-        </main>
+      <section class="cardHome">
+        <header class="headerCard">
+          <img src="../resources/enteprenur.jpg" alt="">
+        </header>
 
-    <footer class="footer">
-      <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark" transparent="false" show-symbol-logo="true"></div>
-    </footer>
+        <div class="sectionCard">
+          <h2>Venture into this world</h2>
+          <h3>We can help you!</h3>
+          <p>Contact us and we will give you a full guide to add cryptocurrencies to your project</p>
+        </div>
+      </section>
 
-    
+      <section class="cardHome">
+        <header class="headerCard">
+          <img src="../resources/save.jpg" alt="">
+        </header>
+        <div class="sectionCard">
+          <h2>Save in crypto and eran more interest</h2>
+          <h3>Best rates!</h3>
+          <p>You will earn up to 25% interest in all of your deposits and a free taxes card</p>
+        </div>
+      </section>
+      </section>
+    </section>
+  </div>
 
-<script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script src="../JsPages/accounts.js"></script>
+
+  <div class="d-flex flex-column align-items-center mt-4 mb-2 w-100 p-5">
+    <h2>BTC to USD - USD to BTC Converter </h2>
+<!-- Crypto Converter ⚡ Widget --><crypto-converter-widget shadow symbol live background-color="#0F0326" border-radius="0.93rem" fiat="united-states-dollar" crypto="bitcoin" amount="1" decimal-places="2"></crypto-converter-widget><a href="https://currencyrate.today/" target="_blank" rel="noopener">CurrencyRate.Today</a><script async src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@1.5.2/dist/latest.min.js"></script><!-- /Crypto Converter ⚡ Widget -->
+  </div>
+  </main>
+
+  <footer class="footer mt-5">
+    <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark"
+      transparent="false" show-symbol-logo="true"></div>
+  </footer>
+
+
+
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="../JsPages/index.js"></script>
 
 </body>
+
 </html>
