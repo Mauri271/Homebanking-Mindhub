@@ -14,7 +14,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name="native", strategy = "native")
-    private long id;
+    private Long id;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -40,8 +40,6 @@ public class Account {
     }
 
 
-
-
     @JsonIgnore
     public Client getOwner() {
         return owner;
@@ -50,7 +48,7 @@ public class Account {
         this.owner = owner;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -74,13 +72,11 @@ public class Account {
         return balance;
     }
 
-
-
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
-
+@JsonIgnore
     public Set<Transaction> getTransactions() {
         return transactions;
     }
@@ -91,16 +87,5 @@ public class Account {
     }
 
 
-
-
-    @Override
-    public String toString() {
-        return "Accounts{" +
-                "owner=" + owner +
-                ", number='" + number + '\'' +
-                ", date=" + date +
-                ", balance=" + balance +
-                '}';
-    }
 }
 

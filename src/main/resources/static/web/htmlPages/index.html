@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -15,8 +16,7 @@
   <title>Home</title>
 </head>
 
-<body v-if="showModal == true" style="
-background-color: rgb(173, 27, 27);">
+<body> 
   <!-- ---------------------------NAVIGATION BAR--------------------------------------     -->
   <header>
 
@@ -134,9 +134,9 @@ background-color: rgb(173, 27, 27);">
 
     <!-- ---------------------- LOAN MODAL ------------------------------------ -->
 
-    <section id="welcome" v-if="showModal == true" @click="closeModal">
+    <section id="welcome" v-if="showModal == true" @click="closeModal" class="d-flex text-center">
       <a href="#" id="closeButtonLoan"><i class="bi bi-x-circle-fill"></i></a>
-      <div id="divLoanPromotion" class="d-flex justify-content-center p-5 align-items-start">
+      <div id="divLoanPromotion" class="d-flex justify-content-center p-3 align-items-start">
         <div id="welcomeModal" class="d-flex flex-row align-items-center justify-content-center gap-1">
           <div id="loanModal" class="d-flex flex-column text-white align-items-center gap-4">
             <h2>Ask for a Loan</h2>
@@ -146,7 +146,7 @@ background-color: rgb(173, 27, 27);">
             <a href="../htmlPages/loans.html">
               <button class="text-white" id="loanButton" type="button">Order it now!</button></a>
           </div>
-          <div id="promotionsModal" class="d-flex flex-wrap text-white gap-2">
+          <div id="promotionsModal" class="d-flex flex-wrap text-white gap-3">
             <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
               <i class="loanIcon bi bi-currency-dollar"></i>
               <p class="pBoxes">Up to 100K USDT</p>
@@ -170,8 +170,8 @@ background-color: rgb(173, 27, 27);">
 
 
 
-    <div class="d-flex flex-column cryptoPromotions p-5">        
-    <h2 class="text-center font-monospace mt-5">How can we help You today?</h2>
+    <div class="d-flex flex-column cryptoPromotions p-5">
+    <h2 class="text-center font-monospace mt-5">How can we help you today?</h2>
     <section class="d-flex gap-4 flex-wrap justify-content-center ">  
       <section class="cardHome">
         <header class="headerCard">
@@ -181,6 +181,7 @@ background-color: rgb(173, 27, 27);">
           <h2>Unlock the future with digital gold</h2>
           <h3>Btc, Eth, Usdt</h3>
           <p>Joinnin us you will recive a 15$ USDT cuppon and disccounts with our associates</p>
+        </div>
       </section>
 
       <section class="cardHome">
@@ -212,20 +213,25 @@ background-color: rgb(173, 27, 27);">
           <img src="../resources/save.jpg" alt="">
         </header>
         <div class="sectionCard">
-          <h2>Save in crypto and eran more interest</h2>
+          <h2>Save in crypto and earn more interest</h2>
           <h3>Best rates!</h3>
           <p>You will earn up to 25% interest in all of your deposits and a free taxes card</p>
         </div>
       </section>
       </section>
-    </section>
   </div>
 
-
-  <div class="d-flex flex-column align-items-center mt-4 mb-2 w-100 p-5">
-    <h2>BTC to USD - USD to BTC Converter </h2>
-<!-- Crypto Converter ⚡ Widget --><crypto-converter-widget shadow symbol live background-color="#0F0326" border-radius="0.93rem" fiat="united-states-dollar" crypto="bitcoin" amount="1" decimal-places="2"></crypto-converter-widget><a href="https://currencyrate.today/" target="_blank" rel="noopener">CurrencyRate.Today</a><script async src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@1.5.2/dist/latest.min.js"></script><!-- /Crypto Converter ⚡ Widget -->
+<!-- Crypto Converter ⚡ Widget -->
+  <div class="d-flex align-items-center justify-content-around mt-4 mb-2 w-100 p-5 flex-wrap tradeDiv">
+    <div class="trade">      
+    <img src="../resources/trade.png" alt="trade">
+    </div>
+    <div class="trade" id="btcConverter">
+      <h2>BTC to USD - USD to BTC Converter </h2>
+      <crypto-converter-widget shadow symbol live background-color="#0F0326" border-radius="0.93rem" fiat="united-states-dollar" crypto="bitcoin" amount="1" decimal-places="0"></crypto-converter-widget><a href="https://currencyrate.today/" target="_blank" rel="noopener"></a><script async src="https://cdn.jsdelivr.net/gh/dejurin/crypto-converter-widget@1.5.2/dist/latest.min.js"></script>
+    </div>
   </div>
+  
   </main>
 
   <footer class="footer mt-5">

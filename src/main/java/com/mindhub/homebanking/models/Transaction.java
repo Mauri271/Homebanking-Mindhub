@@ -1,5 +1,7 @@
 package com.mindhub.homebanking.models;
 
+import com.mindhub.homebanking.enums.TransactionType;
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,7 +12,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name="native", strategy = "native")
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account")
@@ -32,7 +34,7 @@ public class Transaction {
         this.account = account;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -67,8 +69,7 @@ public class Transaction {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
-
+    @JsonIgnore
     public Account getAccount() {
         return account;
     }
@@ -77,14 +78,5 @@ public class Transaction {
         this.account = account;
     }
 
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "account=" + account +
-                ", type=" + type +
-                ", amount=" + amount +
-                ", description='" + description + '\'' +
-                ", date=" + date +
-                '}';
-    }
+
 }

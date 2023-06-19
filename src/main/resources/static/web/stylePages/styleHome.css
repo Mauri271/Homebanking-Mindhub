@@ -10,12 +10,12 @@
     z-index: 1;
     top: 65%;
     left: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -70%);
     border: 1px solid white;
     background: rgb(0, 0, 0);
     border-radius: 1rem;
     width: 80%;
-    height: 75vh;
+    min-height: 60%;
 }
 
 #closeButtonLoan{
@@ -28,7 +28,7 @@
     background-position: center;
     background-size: contain;
     width:100%;
-    height: 50vh;  
+    min-height: 60%;  
 }
 
 #loanModal{
@@ -79,7 +79,7 @@
 
     #welcome{
         width: 95%;
-        height: 35rem !important;
+        min-height: 35rem !important;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -30%);
@@ -150,6 +150,7 @@
     border-radius: 15px;
     box-shadow: 7px 13px 37px rgba(0, 0, 0, .6);
     font-size: 0.8rem;
+    cursor:pointer;
   }
 
 .cardHome:hover{
@@ -212,4 +213,47 @@
   height: 28rem;
   object-fit:cover !important;
   margin: 0px !important;
+}
+
+.tradeDiv{
+  min-height: 40vh;
+}
+
+
+.trade{
+  width: 50%;
+  text-align: center;
+}
+#btcConverter{
+  height: 50%;
+  width: 40%;
+}
+
+.trade img{
+  height: 30rem;
+  width: 100%;
+}
+
+@media screen and (min-width:320px) and (max-width:800px){
+
+.tradeDiv{
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.trade{
+  width: 100%;
+  margin: 1rem 0 1rem 0;
+}
+
+.trade img{
+  height: 80%;
+  width: 100%;
+}
+
+#btcConverter{
+  width: 80%;
+}
+
 }

@@ -1,8 +1,11 @@
 package com.mindhub.homebanking.models;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,11 +14,13 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-
-    private long id;
+    private Long id;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
+
+    @OneToMany(mappedBy ="owner", fetch = FetchType.EAGER)
+    private Set<ClientLoan> clientLoans = new HashSet<>();
 
     private String firstName;
 
@@ -31,7 +36,7 @@ public class Client {
         this.lastName = lastName;
         this.email = email;
     }
-
+    @JsonIgnore
     public Set<Account> getAccounts() {
         return accounts;
     }
@@ -43,7 +48,7 @@ public class Client {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -71,12 +76,14 @@ public class Client {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    @JsonIgnore
+    public Set<ClientLoan> getClientLoans () {return clientLoans;}
+
+
+    public void addClientLoans(ClientLoan clientLoan ){
+        clientLoan.setOwner(this);
+        clientLoans.add(clientLoan);
     }
+
+
 }

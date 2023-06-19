@@ -63,26 +63,49 @@
 
   
 
-  <main id="app" >    
-    <h1 class="text-center font-monospace mt-5">Accounts</h1>
-    <section class=" d-flex align-items-center justify-content-center flex-wrap">
+  <main id="app" class="d-flex flex-column" >    
+    <h1 class="text-center font-monospace mt-5">Hi {{clients.firstName}} {{clients.lastName}}, welcome to your Accounts</h1>
+    <h2 class="text-center font-monospace mt-5">Accounts</h2>
+    <section class=" d-flex align-items- justify-content-around flex-wrap">
 
     <div class="d-flex flex-column gap-3 p-2">
       <div>
         <section class="container col-12 d-flex justify-content-center flex-wrap gap-5">
           <div v-for="client of accounts">
             <div id="card" class="card col-4" style="width: 18rem;">
-              <img class="logo-card " src="../resources/account.png" class="card-img-top" alt="...">
+              <img class="logo-card " src="../resources/account.jpg" class="card-img-top" alt="...">
               <div class="card-body bg-gradient">
-                <h5 class="card-title text-center gap-1"> <strong> {{clients.firstName}} {{clients.lastName}}</strong>
-                  account: {{client.number}}</h5>
+                <h5 class="card-title text-center gap-1"> <strong> Account: </strong>
+                   {{client.number}}</h5>
               </div>
               <ul class="list-group list-group-flush p-3">
-                <li class="list-group-item text-center accountList">Date: {{client.date}}</li>
-                <li class="list-group-item text-center accountList">Crypto Holdings in USDT: ${{client.balance.toLocaleString('en-US')}}</li>
+                <li class="list-group-item text-center accountList"><strong>Creation Date:</strong>  {{client.date}}</li>
+                <li class="list-group-item text-center accountList"><strong>Crypto Holdings in USDT:</strong> ${{client.balance.toLocaleString('en-US')}}</li>
                 <a class="text-center" :href="'../htmlPages/account.html?id='+client.id"><button class="btn border text-white" type="button">See transactions</button></a>
-
               </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      
+    
+    <div class="d-flex flex-column gap-3 p-2">
+      <h2 class="text-center font-monospace mt-5">Loans</h2>
+      <div>
+        <section class="container col-12 d-flex justify-content-center flex-wrap gap-5">
+          <div v-if="loans.legth !== 0" v-for="loan of loans">
+            <div  class="card" class="card col-4" style="width: 18rem;">
+              <img class="logo-card " src="../resources/loans.jpg" class="card-img-top" alt="...">
+              <div class="card-body bg-gradient">
+                <h5 class="card-title text-center gap-1"> <strong> Loans </strong>
+                  </h5>
+              </div>
+              <ul class="list-group list-group-flush p-3">
+                <li class="list-group-item text-center accountList"><strong>Type: </strong> {{loan.name}} </li>
+                <li class="list-group-item text-center accountList"><strong>Debt in USDT:</strong> $ {{loan.amount}}</li>                
+                <li class="list-group-item text-center accountList"><strong>Payments: </strong> {{loan.payments}}</li>
+                </ul>
             </div>
           </div>
         </section>

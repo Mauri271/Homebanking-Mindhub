@@ -113,41 +113,39 @@
 
 
     <!-- ------------------------Account Transactions---------------------- -->
-    <section class="container-fluid d-flex flex-column justify-content-center gap-3 col-8">
-      <h3 class="text-white font-monospace text-center">Account {{account.number}}</h3>
-      <div v-for="transaction of transactions" class="wrapper box">
-        <table class="table text-white">
-          <tbody>
-            <tr>
-              <th class="tableDecoration text-start">Transaction Type</th>
-              <td scope="row" v-if="transaction.type == 'CREDIT'" class="text-success text-center">{{transaction.type}}
-              </td>
-              <td scope="row" v-else-if="transaction.type == 'DEBIT'" class="text-danger text-center">{{transaction.type}}</td>
-            </tr>
-            <tr>
-              <th class="tableDecoration">Transaction Amount</th>
-              <td scope="row" class="text-center">${{transaction.amount.toLocaleString('en-US')}}</td>
-            </tr>
-            <tr>
-              <th class="tableDecoration">Transaction Description</th>
-              <td scope="row" class="text-center">{{transaction.description}}</td>
-            </tr>
-            <tr>
-              <th class="tableDecoration">Transaction Date</th>
-              <td scope="row" class="text-center">{{transaction.date.slice(0, 10)}}</td>
-            </tr>
-            <tr>
-              <th class="tableDecoration">Transaction Time</th>
-              <td scope="row" class="text-center">{{transaction.date.slice(11, 19)}}</td>
-            </tr>
-          </tbody>       
-        </table>
+    <section class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 col-8 h-100 ">
+      <h3 class="text-white font-monospace text-center">Account {{account.number}}'s transactions</h3>
+      <div class="wrapper box">
+        <div class="tableWrapper">
+          <table class="table text-white text-center h-100 col-6 col-md-4">
+            <tbody>
+              <tr>
+                <th class="tableDecoration">Type</th>
+                <th class="tableDecoration">Amount</th>
+                <th class="tableDecoration">Description</th>
+                <th class="tableDecoration">Date</th>
+                <th class="tableDecoration">Time</th>
+              </tr>
+              <tr v-for="transaction of transactions">
+                <td scope="row" v-if="transaction.type == 'CREDIT'" class="text-success text-center">{{transaction.type}}</td>
+                <td scope="row" v-else-if="transaction.type == 'DEBIT'" class="text-danger text-center">{{transaction.type}}</td>
+                <td scope="row" class="text-center">${{transaction.amount.toLocaleString('en-US')}}</td>
+                <td scope="row" class="text-center">{{transaction.description}}</td>
+                <td scope="row" class="text-center">{{transaction.date.slice(0, 10)}}</td>
+                <td scope="row" class="text-center">{{transaction.date.slice(11, 19)}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </section>
-
+    
+    
+    
+    
   
-    <div class="d-flex flex-column align-items-start mb-1 mt-2 ">
-      <a href="../htmlPages/accounts.html" class="btn border ">Go Back</a>
+    <div class="d-flex flex-column align-items-start mt-5 ms-5 ">
+      <a id="goback" href="../htmlPages/accounts.html" class="btn border ">Go Back</a>
     </div>
 
   </main>
