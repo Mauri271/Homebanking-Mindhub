@@ -1,4 +1,6 @@
-
+*{
+  font-family: monospace;
+}
 
 .logo{
     width: 250px;
@@ -6,7 +8,7 @@
 }
 
 .btn{
-  background-color: rgba(0,0,0);
+  background-color: rgb(245, 238, 238);
 }
 
 .btn:hover{
@@ -158,8 +160,7 @@ div:nth-child(1) {
   }
 
  .btn-close{
-    color: rgb(7, 15, 20);
-    border: 1px solid rgb(27, 10, 36);
+    border: 1px solid rgb(234, 227, 238);
   }
 
   #logIn{
@@ -175,11 +176,11 @@ div:nth-child(1) {
       text-decoration: none;
     }
   .offcanvas-body{
-    background: linear-gradient(135deg, rgb(11, 114, 137) 10%, rgb(3, 82, 100)100%); 
+    background: linear-gradient(135deg, rgb(5, 37, 79) 10%, rgb(6, 6, 82)100%); 
   }
 
   .offcanvas-header{
-    background-color: rgb(3, 82, 100);
+    background: linear-gradient(135deg, rgb(5, 37, 79) 10%, rgb(6, 6, 82)100%); 
   }
 
 

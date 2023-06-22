@@ -1,5 +1,7 @@
 package com.mindhub.homebanking;
 
+import com.mindhub.homebanking.enums.CardColor;
+import com.mindhub.homebanking.enums.CardType;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.enums.TransactionType;
 import com.mindhub.homebanking.repositories.*;
@@ -23,7 +25,7 @@ public class HomebankingApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountsRepository accountsRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository) {
+	public CommandLineRunner initData(ClientRepository clientRepository, AccountsRepository accountsRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 		return (args) -> {
 
 			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com");
@@ -31,9 +33,10 @@ public class HomebankingApplication {
 			clientRepository.save(client1);
 			clientRepository.save(client2);
 
+//--------------------------------------------------------------------------------------------
 
-			Account account1 = new Account("VIN001", LocalDate.now(), 5000.0);
-			Account account2 = new Account("VIN002", LocalDate.now().plusDays(1), 7500.0);
+			Account account1 = new Account("VIN001", LocalDate.now(), 2000.0);
+			Account account2 = new Account("VIN002", LocalDate.now().plusDays(1), -16000.0);
 			Account account3 = new Account("VIN003", LocalDate.now().plusDays(1), 300.0);
 			Account account4 = new Account("VIN004", LocalDate.now().plusDays(1), 6000.0);
 			client1.addAccounts(account1);
@@ -44,6 +47,8 @@ public class HomebankingApplication {
 			accountsRepository.save(account2);
 			accountsRepository.save(account3);
 			accountsRepository.save(account4);
+
+//------------------------------------------------------------------------------------------------
 
 			Transaction transaction1 = new Transaction(TransactionType.DEBIT, -4000.0, "BTC Buy", LocalDateTime.now(), account1);
 			Transaction transaction2 = new Transaction(TransactionType.CREDIT, 6000.0, "ETH Sell", LocalDateTime.now(), account1);
@@ -73,6 +78,8 @@ public class HomebankingApplication {
 			transactionRepository.save(transaction7);
 			transactionRepository.save(transaction8);
 
+//-----------------------------------------------------------------------------------------
+
 			Loan loan1 = new Loan("Mortgage", 500000.0, Set.of(12, 24, 36, 48, 60));
 			Loan loan2 = new Loan("Personal", 100000.0, Set.of(6, 12, 24));
 			Loan loan3 = new Loan("Automotive", 300000.0, Set.of(6, 12, 24, 36));
@@ -86,15 +93,12 @@ public class HomebankingApplication {
 			loan1.addClientLoans(clientLoan1);
 			clientLoanRepository.save(clientLoan1);
 
-
 			ClientLoan clientLoan2 = new ClientLoan(50000.0, 12);
 			client1.addClientLoans((clientLoan2));
 			loan2.addClientLoans(clientLoan2);
 			clientLoanRepository.save(clientLoan2);
 
-
-
-			ClientLoan clientLoan3 = new ClientLoan(100000.0,24);
+			ClientLoan clientLoan3 = new ClientLoan(100000.0, 24);
 			client2.addClientLoans(clientLoan3);
 			loan1.addClientLoans(clientLoan3);
 			clientLoanRepository.save(clientLoan3);
@@ -104,10 +108,19 @@ public class HomebankingApplication {
 			loan3.addClientLoans(clientLoan4);
 			clientLoanRepository.save(clientLoan4);
 
+//------------------------------------------------------------------------------------------------
 
+			Card card1 = new Card("Melba Morel", CardType.DEBIT, CardColor.GOLD,"2047 4569 8025 9865",255,LocalDate.now(),LocalDate.now().plusYears(5));
+			client1.addClientCards(card1);
+			cardRepository.save(card1);
 
+			Card card2 = new Card("Melba Morel", CardType.CREDIT, CardColor.TITANIUM," 4569 9865 8025 2047",758,LocalDate.now(),LocalDate.now().plusYears(5));
+			client1.addClientCards(card2);
+			cardRepository.save(card2);
 
-
+			Card card3 = new Card("Mauricio Echaniz", CardType.CREDIT, CardColor.SILVER," 4569 8526 8749 6587",377,LocalDate.now(),LocalDate.now().plusYears(5));
+			client2.addClientCards(card3);
+			cardRepository.save(card3);
 		};
 	}
 }

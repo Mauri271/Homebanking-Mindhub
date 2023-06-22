@@ -39,7 +39,7 @@
                 <a class="nav-link active" href="../htmlPages/accounts.html">Accounts</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Cards</a>
+                <a class="nav-link" href="../htmlPages/Cards.html">Cards</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Investment</a>
@@ -120,19 +120,29 @@
           <table class="table text-white text-center h-100 col-6 col-md-4">
             <tbody>
               <tr>
-                <th class="tableDecoration">Type</th>
-                <th class="tableDecoration">Amount</th>
-                <th class="tableDecoration">Description</th>
-                <th class="tableDecoration">Date</th>
-                <th class="tableDecoration">Time</th>
+                <th class="tableDecoration font-monospace">Type</th>
+                <th class="tableDecoration font-monospace">Amount</th>
+                <th class="tableDecoration font-monospace">Description</th>
+                <th class="tableDecoration font-monospace">Date</th>
+                <th class="tableDecoration font-monospace">Time</th>
               </tr>
               <tr v-for="transaction of transactions">
-                <td scope="row" v-if="transaction.type == 'CREDIT'" class="text-success text-center">{{transaction.type}}</td>
-                <td scope="row" v-else-if="transaction.type == 'DEBIT'" class="text-danger text-center">{{transaction.type}}</td>
-                <td scope="row" class="text-center">${{transaction.amount.toLocaleString('en-US')}}</td>
-                <td scope="row" class="text-center">{{transaction.description}}</td>
-                <td scope="row" class="text-center">{{transaction.date.slice(0, 10)}}</td>
-                <td scope="row" class="text-center">{{transaction.date.slice(11, 19)}}</td>
+                <td scope="row" v-if="transaction.type == 'CREDIT'" class="text-success text-center font-monospace">{{transaction.type}}</td>
+                <td scope="row" v-else-if="transaction.type == 'DEBIT'" class="text-danger text-center font-monospace">{{transaction.type}}</td>
+                <td scope="row" class="text-center font-monospace">${{transaction.amount.toLocaleString('en-US')}}</td>
+                <td scope="row" class="text-center font-monospace">{{transaction.description}}</td>
+                <td scope="row" class="text-center font-monospace">{{transaction.date.slice(0, 10)}}</td>
+                <td scope="row" class="text-center font-monospace">{{transaction.date.slice(11, 19)}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table text-white text-center h-100 col-6 col-md-4">
+            <tbody>
+                <th class="tableDecoration font-monospace">Total Balance</th>
+              </tr>
+              <tr>            
+                <td scope="row" class="text-center font-monospace"> ${{account.balance}}</td>
               </tr>
             </tbody>
           </table>
@@ -144,7 +154,7 @@
     
     
   
-    <div class="d-flex flex-column align-items-start mt-5 ms-5 ">
+    <div class="d-flex flex-column align-items-start mt-5 ms-5  font-monospace">
       <a id="goback" href="../htmlPages/accounts.html" class="btn border ">Go Back</a>
     </div>
 

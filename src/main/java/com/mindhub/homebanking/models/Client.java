@@ -3,9 +3,7 @@ package com.mindhub.homebanking.models;
 import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +19,9 @@ public class Client {
 
     @OneToMany(mappedBy ="owner", fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private Set<Card> cards = new HashSet<>();
 
     private String firstName;
 
@@ -79,10 +80,17 @@ public class Client {
     @JsonIgnore
     public Set<ClientLoan> getClientLoans () {return clientLoans;}
 
+    public Set<Card> getClientCards() {return cards;}
+
 
     public void addClientLoans(ClientLoan clientLoan ){
         clientLoan.setOwner(this);
         clientLoans.add(clientLoan);
+    }
+
+    public void addClientCards(Card clientCard){
+        clientCard.setOwner(this);
+        cards.add(clientCard);
     }
 
 
