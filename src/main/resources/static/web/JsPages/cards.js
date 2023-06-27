@@ -1,6 +1,6 @@
 const { createApp } = Vue
 
-createApp({
+const app = createApp({
   data() {
   return {
         cards: {},
@@ -14,7 +14,7 @@ createApp({
   methods:{
 
   loadData(){
-          axios.get("http://localhost:8080/api/clients/1")
+          axios.get("http://localhost:8080/api/clients/current")
           .then(res => {            
             
           this.cards= res.data.cards.sort((a,b) => a.id - b.id)
@@ -24,6 +24,30 @@ createApp({
           .catch(err=> console.log(err))
   },
 
+  }
+
+
+
+}).mount('#app')
+
+const logout = createApp({
+  data() {
+  return {
+        
+      };
+  },
+
+  created(){
+   
+  },
+
+  methods:{
+
+  logOut(){
+    axios.post('/api/logout').
+    then(response => window.location.href="../htmlPages/index.html")
+  }
+
 
 
 
@@ -31,4 +55,4 @@ createApp({
 
 
 
-}).mount('#app')
+}).mount('#logout')

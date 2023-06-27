@@ -11,12 +11,17 @@ createApp({
 
   created(){
     this.loadData()
+
+    axios.get('api/clients')
+    .then(response => {
+
+    })
   },
 
   methods:{
 
   loadData(){
-          axios.get("http://localhost:8080/api/clients/1")
+          axios.get("http://localhost:8080/api/clients/current")
           .then(res => {            
             
           this.clients= res.data         
@@ -38,3 +43,25 @@ createApp({
 
 
 }).mount('#app')
+
+const logout = createApp({
+  data() {
+  return {
+        
+      };
+  },
+
+  created(){
+   
+  },
+
+  methods:{
+
+  logOut(){
+    axios.post('/api/logout').
+    then(response => window.location.href="../htmlPages/index.html")
+  }
+
+  }
+
+}).mount('#logout')

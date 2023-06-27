@@ -19,72 +19,53 @@
 
 <body> 
   <!-- ---------------------------NAVIGATION BAR--------------------------------------     -->
-  <header id="main">
-
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <div>
-          <a class="navbar-brand" href="#"><img class="logo" src="../resources/echanizBank.png" alt="logo"></a>
-          <button class="navbar-toggler btn-white" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <div id="arrow">
-            <h2  class="text-white text-center arrowTitles1" v-on:mousemove="showMessage = true" v-if="!showMessage"><i class="bi bi-arrow-down"></i></h2>
-            <h2 class="text-white text-center arrowTitles2" v-else>{{ message }} <i class="bi bi-arrow-down"></i></h2> 
-          </div>  
-          <div class="d-flex flex-column flex-md-row justify-content-md-start ms-5" v-on:mousemove="showMessage = true" v-if="!showMessage" >
-            <ul id="ulNav" class="navbar-nav me-auto mb-2 mb-lg-0 ms-3 ms-md-0 d-flex me-lg-5" >
-              <li class="nav-item">
-                <a class="nav-link  active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../htmlPages/accounts.html">Accounts</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../htmlPages/Cards.html">Cards</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Investment</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Loans</a>
-              </li>
-            </ul>            
+  <header id="app">
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img class="logo" src="../resources/echanizBank.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/accounts.html">Accounts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/Cards.html">Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/investments.html">Investment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/loans.html">Loans</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <a v-if="logged == false" href="../htmlPages/login.html">
+              <button class="btn btn-primary" type="button">Log in</button>
+            </a>
+            <a v-else href="../htmlPages/login.html">
+              <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
+            </a>
+            <button class="btn btn-primary ml-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+              aria-controls="offcanvasExample">
+              <i class="bi bi-list-columns-reverse"></i>
+            </button>
           </div>
-          <div class="ms-5" v-else>
-            <ul id="ulNav" class="navbar-nav me-auto mb-2 mb-lg-0 ms-3 ms-md-0 d-flex me-lg-5" >
-              <li class="nav-item navHelper">
-                <a class="nav-link  active" aria-current="page" href="#">{{num1}} Home</a>
-              </li>
-              <li class="nav-item navHelper">
-                <a class="nav-link" href="../htmlPages/accounts.html">{{num2}} Accounts</a>
-              </li>
-              <li class="nav-item navHelper">
-                <a class="nav-link" href="../htmlPages/Cards.html">{{num3}} Cards</a>
-              </li>
-              <li class="nav-item navHelper">
-                <a class="nav-link" href="#">{{num4}} Investment</a>
-              </li>
-              <li class="nav-item navHelper">
-                <a class="nav-link" href="#">{{num5}} Loans</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="d-flex justify-content-end w-25">
-          <button class="btn btnNav" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"><i class="bi bi-list-columns-reverse"></i>
-          </button>
         </div>
       </div>
     </nav>
   </header>
+  
 
-  <main id="app" class=" d-flex flex-column gap-5 mt-2" v-if="showModal == true" @click="closeModal" style="background-color: #575e64ca; width: 100%; height: 100%" >
+  
+
+  <main  class=" d-flex flex-column gap-5 mt-2">
 
     
   
@@ -97,11 +78,9 @@
       </div>
       <div class="offcanvas-body d-flex flex-column gap-4">
         <div>
-          <form class="d-flex align-items-center text-center flex-wrap gap-3">
-            <input class="form-control me-2" type="text" placeholder="User">
-            <input class="form-control me-2" type="password" placeholder="Password">
-            <button class="btn" id="logIn" type="button">Log in</button>
-          </form>
+        
+            
+         
         </div>
         <div>
           <ul class="d-flex flex-column gap-1 list-unstyled">
@@ -130,7 +109,7 @@
 
 
     <!-- -------------------------------------CAROUSEL -------------------------------------- -->
-    <h1 class="text-center font-monospace mt-2">A new way to manage your money</h1>
+    <h1 class="text-center font-monospace mt-2">Mindhub Bank, a new way to manage your money</h1>
     <div id="carouselExampleDark" class="carousel carousel-dark slide">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -158,109 +137,74 @@
           <img src="../resources/city.jpg" class="d-block w-100 carouselImg"
           alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5 class="carouselTitles">Experience Urban Prosperity in the Heart of the City"</h5>
+            <h5 class="carouselTitles">Experience Urban Prosperity in the Heart of the City</h5>
             <p class="pCarousel font-monospace">Immerse yourself in the vibrant energy of our featured city and unlock a world of financial possibilities.</p>
           </div>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"><---</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"><--</span>
         <span class="visually-hidden ">Previous</span>
       </button>
       <button class="carousel-control-next " type="button " data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true">---></span>
+        <span class="carousel-control-next-icon" aria-hidden="true">--></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <!-- ---------------------- LOAN MODAL ------------------------------------ -->
-    <!-- <div v-if="showModal == true" @click="closeModal" style="background-color: #575e64ca; width: 100%; height: 100%; position: absolute;" >
-    <section id="welcome"  class="d-flex text-center">      
-      <a href="#" id="closeButtonLoan"><i class="bi bi-x-circle-fill"></i></a>
-      <div id="divLoanPromotion" class="d-flex justify-content-center p-3 align-items-start">
-        <div id="welcomeModal" class="d-flex flex-row align-items-center justify-content-center gap-1">
-          <div id="loanModal" class="d-flex flex-column text-white align-items-center gap-4">
-            <h2>Ask for a Loan</h2>
-            <h2 id="cien"> 100% ONLINE</h2>
-            <p>Don´t need to be a client</p>
-            <p> Only with your ID</p>
-            <a href="../htmlPages/loans.html">
-              <button class="text-white" id="loanButton" type="button">Order it now!</button></a>
-          </div>
-          <div id="promotionsModal" class="d-flex flex-wrap text-white gap-3">
-            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
-              <i class="loanIcon bi bi-currency-dollar"></i>
-              <p class="pBoxes">Up to 100K USDT</p>
-            </div>
-            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
-              <i class="loanIcon bi bi-clock"></i>
-              <p class="pBoxes">In just 24HS</p>
-            </div>
-            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
-              <i class="loanIcon bi bi-plus-lg"></i>
-              <p class="pBoxes">Only 5% Interest</p>
-            </div>
-            <div class="promotionBoxes d-flex flex-column align-items-center p-3 text-center gap-2">
-              <i class="loanIcon bi bi-check2"></i>
-              <p class="pBoxes">Immediate accreditation</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div> -->
+    
 
 
 
     <div class="d-flex flex-column cryptoPromotions p-5">
-    <h2 class="text-center font-monospace mt-5 mb-3">How can we help you today?</h2>
-    <section class="d-flex gap-4 flex-wrap justify-content-center ">  
-      <section class="cardHome">
-        <header class="headerCard">
-          <img src="../resources/crypto.jpg" alt="">
-        </header>
-        <div class="sectionCard">
-          <h2>Unlock the future with digital gold</h2>
-          <h3>Btc, Eth, Usdt</h3>
-          <p>Joinnin us you will recive a 15$ USDT cuppon and disccounts with our associates</p>
-        </div>
-      </section>
-
-      <section class="cardHome">
-        <header class="headerCard">
-          <img src="../resources/futureCrypto.jpg" alt="">
-        </header>
-
-        <div class="sectionCard">
-          <h2>Welcome to the future</h2>
-          <h3>What is crypto?</h3>
-          <p>Learn from the best experts on this community and skyrocket your wallet!</p>
-        </div>
-      </section>
-
-      <section class="cardHome">
-        <header class="headerCard">
-          <img src="../resources/enteprenur.jpg" alt="">
-        </header>
-
-        <div class="sectionCard">
-          <h2>Venture into this world</h2>
-          <h3>We can help you!</h3>
-          <p>Contact us and we will give you a full guide to add cryptocurrencies to your project</p>
-        </div>
-      </section>
-
-      <section class="cardHome">
-        <header class="headerCard">
-          <img src="../resources/save.jpg" alt="">
-        </header>
-        <div class="sectionCard">
-          <h2>Save in crypto and earn more interest</h2>
-          <h3>Best rates!</h3>
-          <p>You will earn up to 25% interest in all of your deposits and a free taxes card</p>
-        </div>
-      </section>
-      </section>
-  </div>
+      <h2 class="text-center font-monospace mt-5">How can we help you today?</h2>
+      <section class="d-flex gap-4 flex-wrap justify-content-center ">  
+        <section class="cardHome">
+          <header class="headerCard">
+            <img src="../resources/crypto.jpg" alt="">
+          </header>
+          <div class="sectionCard">
+            <h2>Unlock the future with digital gold</h2>
+            <h3>Btc, Eth, Usdt</h3>
+            <p>Joinnin us you will recive a 15$ USDT cuppon and disccounts with our associates</p>
+          </div>
+        </section>
+  
+        <section class="cardHome">
+          <header class="headerCard">
+            <img src="../resources/futureCrypto.jpg" alt="">
+          </header>
+  
+          <div class="sectionCard">
+            <h2>Welcome to the future</h2>
+            <h3>What is crypto?</h3>
+            <p>Learn from the best experts on this community and skyrocket your wallet!</p>
+          </div>
+        </section>
+  
+        <section class="cardHome">
+          <header class="headerCard">
+            <img src="../resources/enteprenur.jpg" alt="">
+          </header>
+  
+          <div class="sectionCard">
+            <h2>Venture into this world</h2>
+            <h3>We can help you!</h3>
+            <p>Contact us and we will give you a full guide to add cryptocurrencies to your project</p>
+          </div>
+        </section>
+  
+        <section class="cardHome">
+          <header class="headerCard">
+            <img src="../resources/save.jpg" alt="">
+          </header>
+          <div class="sectionCard">
+            <h2>Save in crypto and earn more interest</h2>
+            <h3>Best rates!</h3>
+            <p>You will earn up to 25% interest in all of your deposits and a free taxes card</p>
+          </div>
+        </section>
+        </section>
+    </div>
 
 <section class="d-flex flex-column">
   <h2 class="text-center font-monospace mt-5">Trade with Us</h2>

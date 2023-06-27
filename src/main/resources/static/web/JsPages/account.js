@@ -42,3 +42,25 @@ createApp({
 
 
 }).mount('#app')
+
+const logout = createApp({
+  data() {
+  return {
+        
+      };
+  },
+
+  created(){
+   
+  },
+
+  methods:{
+
+  logOut(){
+    axios.post('/api/logout').
+    then(response => window.location.href="../htmlPages/index.html")
+  }
+  }
+
+
+}).mount('#logout')

@@ -1,303 +1,156 @@
-*{
+nav{
   font-family: monospace;
 }
 
-#arrow{
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 44%;
-  height: 40px;
-  width: 110px;
-  background-color: rgb(10, 39, 133);
-  border-radius: 0 0 4px 4px;
-  font-family: monospace;
-  border: 0.5px solid white;
+.cryptoPromotions{
+  width: 100% !important;
+  max-height: 100% !important;
+  background-color: rgba(11, 100, 120, 0.3);
 }
-
-.arrowTitles1{
-  font-size: 20px;
-}
-.arrowTitles2{
-  width: 100%;
-  font-size: 12px;
-}
-
-
-/* ------- loan modal---------- */
-/* #welcome{    
-    position: absolute;
-    z-index: 1;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -90%);
-    border: 1px solid white;
-    background: rgb(0, 0, 0);
-    border-radius: 1rem;
-    width: 80%;
-    min-height: 62%;
-}
-
-#closeButtonLoan{
-    margin: 0.3rem !important;
-    margin-left: 0.7rem !important;
-    display: block;
-}
-
-#welcomeModal{
-    background-position: center;
-    background-size: contain;
-    width:100%;
-    min-height: 60%;  
-}
-
-#loanModal{
-    width:100%;
-    height: 45vh;
-    font-size: 1.4rem;
-}
-
-#promotionsModal{
-    width: 50vw;
-}
-
-.promotionBoxes{
-    width: 9rem !important;
-    height: 9rem !important;
-    background-color: rgba(24, 3, 3, 0.411);
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px 3px rgb(29, 183, 218,0.922);
-}
-
-
-.loanIcon{
-    border: 1px solid white;
-    padding: 2px;
-    border-radius: 5px;
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
-}
-
-.pBoxes{
-    font-weight: 700;
-}
-
-#cien{
-    font-weight: 900;
-}
-
-#loanButton{
-    background-color: rgb(29, 183, 218, 0.989);
-    border-radius: 10px;
-    
-    animation: rotBGimg 0.5s linear;
-    transition: all 0.2s linear;
-}
-
-@media screen and (min-width:320px) and (max-width:1064px) {
-
-    #welcome{
-        width: 95%;
-        min-height: 35rem !important;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -30%);
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    #divLoanPromotion{
-        display: flex;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    #loanModal{
-        width:100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;        
-        font-size: 1rem;
-    }
-
-    #promotionsModal{
-        height: 100%;
-        width: 100%;        
-        justify-content: center;
-        align-items: center;
-    }
-
-    .promotionBoxes{
-        width: 6rem !important;
-        height: 6.8rem !important;
-        background-color: rgba(24, 3, 3, 0.833);
-        border-radius: 10px;
-    }
-
-    .pBoxes{
-        
-        font-weight: 100 !important;
-        font-size: 0.7rem;
-    }
-    
-} */
 
 
 @keyframes rotBGimg {
-  from {
-    transform: rotate(0deg);
-  }
+from {
+  transform: rotate(0deg);
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+to {
+  transform: rotate(360deg);
+}
 }
 
 
 .cardsSection{
-  margin-top: 4rem;
+margin-top: 4rem;
 }
 
-  .cardHome {
-    width: 17rem;
-    height: 28rem;
-    overflow: hidden;
-    position: relative;
-    background: rgba(0, 0, 0, 0.635);
-    border-radius: 15px;
-    box-shadow: 7px 13px 37px rgba(0, 0, 0, .6);
-    font-size: 0.8rem;
-    cursor:pointer;
-  }
+.cardHome {
+  width: 17rem !important;
+  height: 28rem !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: rgba(0, 0, 0, 0.635);
+  border-radius: 15px !important;
+  box-shadow: 7px 13px 37px rgba(0, 0, 0, .6);
+  font-size: 0.8rem !important;
+  cursor:pointer !important;
+}
 
 .cardHome:hover{
-  box-shadow: 10px 10px 7px 0px rgb(29, 183, 218,0.3);
+box-shadow: 10px 10px 7px 0px rgb(29, 183, 218,0.3);
 }
 
-  
- .headerCard {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .headerCard::before {
-    content: '';
-    position: absolute;
-    border-top: 70px solid transparent;
-    border-left: 400px solid rgb(0, 0, 0);
-    bottom: 0;
-  }
-  
-  .headerCard img {
-    width: 100%;
-    height: 178px;
-  }
-  
-  .sectionCard {
-    padding: 10px;
-    overflow: hidden;
-    text-align: center;
-  }
-  
-  .sectionCard h2 {
-    margin: .5em 0;
-  }
-  
-  .sectionCard p {
-    margin: 1em 0;
-  }
 
-  .card{
-    width: 15rem;
-  }
+.headerCard {
+  width: 100% !important;
+  height: 200px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
 
+.headerCard::before {
+  content: '' !important;
+  position: absolute !important;
+  border-top: 70px solid transparent !important;
+  border-left: 400px solid rgb(0, 0, 0) !important;
+  bottom: 0 !important;
+}
 
-  /* Carousel */
+.headerCard img {
+  width: 100% !important;
+  height: 178px !important;
+}
+
+.sectionCard {
+  padding: 10px !important;
+  overflow: hidden !important;
+  text-align: center !important;
+}
+
+.sectionCard h2 {
+  margin: .5em 0 !important;
+}
+
+.sectionCard p {
+  margin: 1em 0 !important;
+}
+
+.card{
+  width: 15remS;
+}
 
 
-  .carouselTitles{
-    font-size: 2rem;    
-    background-color: rgba(0, 0, 0, 0.064);
-    font-weight: 800 !important;
-  }
+/* Carousel */
+
+.carouselTitles{
+  font-size: 2.3rem;    
+  background-color: rgba(0, 0, 0, 0.064);
+  font-weight: 800 !important;
+}
 
 
 
-  .pCarousel{
-    font-size: 1rem;    
-    background-color: rgba(0, 0, 0, 0.027);
-    font-weight: 50 !important;
-  }
+.pCarousel{
+  font-size: 1.1rem;    
+  background-color: rgba(0, 0, 0, 0.027);
+  font-weight: 50 !important;
+}
 
 #carouselExampleIndicators{
-  margin: 0px !important;
+margin: 0px !important;
 }
 
 .carousel-inner{
-  height: 28rem;
-  margin: 0px !important;
+height: 28rem;
+margin: 0px !important;
 }
 
 .carouselImg{
-  width:100vw !important;
-  height: 28rem;
-  object-fit:cover !important;
-  margin: 0px !important;
+width:100vw !important;
+height: 28rem;
+object-fit:cover !important;
+margin: 0px !important;
 }
 
 .tradeDiv{
-  min-height: 40vh;
+min-height: 40vh;
 }
 
 
 .trade{
-  width: 50%;
-  text-align: center;
+width: 50%;
+text-align: center;
 }
 #btcConverter{
-  height: 50%;
-  width: 40%;
+height: 50%;
+width: 40%;
 }
 
 .trade img{
-  height: 30rem;
-  width: 100%;
+height: 30rem;
+width: 100%;
 }
 
 @media screen and (min-width:320px) and (max-width:800px){
 
-  #arrow{
-    display: none;
-  }
-
 .tradeDiv{
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 
 .trade{
-  width: 100%;
-  margin: 1rem 0 1rem 0;
+width: 100%;
+margin: 1rem 0 1rem 0;
 }
 
 .trade img{
-  height: 80%;
-  width: 100%;
+height: 80%;
+width: 100%;
 }
 
 #btcConverter{
-  width: 80%;
+width: 80%;
 }
 
-}
-
-
-.navHelper{
-  border: 1px solid purple;
 }

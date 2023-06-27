@@ -1,197 +1,198 @@
-*{
+header, a, nav,h1{
   font-family: monospace;
 }
 
 .logo{
-    width: 250px;
-    height: 85px;
+  width: 250px;
+  height: 85px;
 }
 
 .btn{
-  background-color: rgb(245, 238, 238);
+background-color: rgba(0,0,0);
 }
 
 .btn:hover{
-  border: 1px 2px 2px 1px solid rgb(29, 183, 218,0.3);
+border: 1px 2px 2px 1px solid rgb(29, 183, 218,0.3);
 }
 
 h1,h3,h2,p{
-    color: rgb(248, 240, 249) !important;
+  color: rgb(248, 240, 249) !important;
 }
 
 h5{
-    color: rgb(248, 240, 249) !important;
+  color: rgb(248, 240, 249) !important;
 }
 
 .logoCanvas{    
-    width: 210px;
-    height: 75px;
-    box-shadow:1px 2px 2px 1px rgb(39, 7, 56)!important;
+  width: 210px;
+  height: 75px;
+  box-shadow:1px 2px 2px 1px rgb(39, 7, 56)!important;
 }
 
 header,body{
-    background-color: rgba(30, 30,47, 1) !important;
+  background-color: rgba(30, 30,47, 1) !important;
 }
 
 .accountList{
-    background-color: rgba(0, 0, 0,0);
-    color: rgb(248, 240, 249);
+  background-color: rgba(0, 0, 0,0);
+  color: rgb(248, 240, 249);
 }
 
 
 ul{
-    margin-top: 10px;
-    gap: 10px;
+  margin-top: 10px;
+  gap: 10px;
 }
 
 .list-group-item{
-  border: none !important;
-  border-radius: 15px;
+border: none !important;
+border-radius: 15px;
 }
 
 .card>.list-group{
-  border: none !important;
+border: none !important;
 }
 
 #liTransaction{
-  color: rgb(29, 183, 218);
-  font-weight: 400;
-  font-size: 1.4rem;
+color: rgb(29, 183, 218);
+font-weight: 400;
+font-size: 1.4rem;
 }
 
 a{
-    color:rgb(248, 240, 249)!important ;
+  color:rgb(248, 240, 249)!important ;
 }
 
 
 span,input{
-    color:rgb(29, 183, 218)!important ;
+  color:rgb(29, 183, 218)!important ;
 }
 
 .nav-link:hover{
-    background-color: rgb(248, 240, 249) !important;
-    color:rgb(35, 32, 32) !important;
-    border-radius: 10px;
+  background-color: rgb(248, 240, 249) !important;
+  color:rgb(35, 32, 32) !important;
+  border-radius: 10px;
 }
 
 nav, footer{
-    background-color: rgba(30, 30,46, 1) !important;
+  background-color: rgba(30, 30,46, 1) !important;
 }
 
 .navbar{
-  border-bottom: 1px solid rgb(80, 116, 206);
+border-bottom: 1px solid rgb(80, 116, 206);
 }
 
 footer{
-    /* border-top: 1px solid rgb(29, 183, 218)  !important; */
-    max-width: 100vw;
+  /* border-top: 1px solid rgb(29, 183, 218)  !important; */
+  max-width: 100vw;
 }
 
 main{
-    background-color: rgba(30, 30,47, 1) !important;
-    min-height: 85vh;
+  background-color: rgba(30, 30,47, 1) !important;
+  min-height: 85vh;
 }
 
 
- .navbar-toggler{
-    border: 1px solid rgb(29, 183, 218);
+.navbar-toggler{
+  border: 1px solid rgb(29, 183, 218);
 }
 
 .navbar-toggler-icon{
-    background-image: url(../resources/toggle.png);
-    background-size:contain;    
-    width: 2rem;
-    height: 3rem;
+  background-image: url(../resources/toggle.png);
+  background-size:contain;    
+  width: 2rem;
+  height: 3rem;
 }
 input{
-    width: 7rem !important;
-    height: 2.5rem !important;
-    color: rgb(29, 183, 218);
+  width: 7rem !important;
+  height: 2.5rem !important;
+  color: rgb(29, 183, 218);
 }
 
 .logo-card{
-    max-width: 20rem;
-    border-radius: 5px !important;
+  max-width: 20rem;
+  border-radius: 5px !important;
 }
 
 .card{
-    background-color: rgba(0, 0, 0, 0.635);
-    border: 1px solid rgb(1, 13, 15);
+  background-color: rgba(0, 0, 0, 0.635);
+  border: 1px solid rgb(1, 13, 15);
 }
 
 .card:hover{
-  box-shadow: 10px 10px 7px 0px rgb(29, 183, 218,0.3);
-  }
+box-shadow: 10px 10px 7px 0px rgb(29, 183, 218,0.3);
+}
 
 
 @keyframes roll {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0);
   }
-  
- .btnNav{
-    color:  rgb(44, 40, 40);
-    background-color: rgb(29, 183, 218);
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btnNav{
+  color:  rgb(44, 40, 40);
+  background-color: rgb(29, 183, 218);
 }
 
 .btnNav:hover{
-    color: rgb(35, 32, 32);
-    background-color: rgb(248, 240, 249);
+  color: rgb(35, 32, 32);
+  background-color: rgb(248, 240, 249);
 }
 
 div:nth-child(1) {
-    font-family: 'Crimson Pro', serif;
-    font-size: 1.2rem;
-  }
-  div:nth-child(2) {
-    font-family: 'Literata’, serif';
-  }
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.2rem;
+}
+div:nth-child(2) {
+  font-family: 'Literata’, serif';
+}
 
-  #ulNav{
-    margin-right: 7rem !important;
-  }
+#ulNav{
+  margin-right: 7rem !important;
+}
 
-  span{
-    margin-right: 3rem !important;
-  }
+span{
+  margin-right: 3rem !important;
+}
 
- .btn-close{
-    border: 1px solid rgb(234, 227, 238);
-  }
+.btn-close{
+  color: rgb(7, 15, 20);
+  border: 1px solid rgb(27, 10, 36);
+}
 
-  #logIn{
-    color: white;
-  }
+#logIn{
+  color: white;
+}
 
-  .active{
-    text-decoration:underline rgb(248, 240, 249);
-    font-size: 1.3rem;
-  }
+.active{
+  text-decoration:underline rgb(248, 240, 249);
+  font-size: 1.3rem;
+}
 
-    a{
-      text-decoration: none;
-    }
-  .offcanvas-body{
-    background: linear-gradient(135deg, rgb(5, 37, 79) 10%, rgb(6, 6, 82)100%); 
+  a{
+    text-decoration: none;
   }
+.offcanvas-body{
+  background: linear-gradient(135deg, rgb(11, 114, 137) 10%, rgb(3, 82, 100)100%); 
+}
 
-  .offcanvas-header{
-    background: linear-gradient(135deg, rgb(5, 37, 79) 10%, rgb(6, 6, 82)100%); 
-  }
+.offcanvas-header{
+  background-color: rgb(3, 82, 100);
+}
 
 
 
 
 @media screen and (max-width:993px){
-   
+ 
 
-    .logo{
-        display: none;
-    }
+  .logo{
+      display: none;
+  }
 
 
 }
@@ -201,114 +202,113 @@ div:nth-child(1) {
 /* --------TABLE TRANSACTIONS----------------- */
 
 .tableWrapper {
-  overflow-x: auto;
+overflow-x: auto;
 }
 
 @property --angle {
-  syntax: '<angle>';
-  initial-value: 90deg;
-  inherits: true;
+syntax: '<angle>';
+initial-value: 90deg;
+inherits: true;
 }
 
 @property --gradX {
-  syntax: '<percentage>';
-  initial-value: 50%;
-  inherits: true;
+syntax: '<percentage>';
+initial-value: 50%;
+inherits: true;
 }
 
 @property --gradY {
-  syntax: '<percentage>';
-  initial-value: 0%;
-  inherits: true;
+syntax: '<percentage>';
+initial-value: 0%;
+inherits: true;
 }
 
 
 :root {
-	--d: 2500ms;
-	--angle: 90deg;
-	--gradX: 100%;
-	--gradY: 50%;
-	--c1: rgba(168, 239, 255, 1);
-	--c2: rgba(168, 239, 255, 0.1);
+--d: 2500ms;
+--angle: 90deg;
+--gradX: 100%;
+--gradY: 50%;
+--c1: rgba(168, 239, 255, 1);
+--c2: rgba(168, 239, 255, 0.1);
 }
 
 .wrapper {
-	min-width: min(50rem, 100%);
+min-width: min(50rem, 100%);
 }
 
 .box {
-	font-size: 1rem;
-	border: 0.35rem solid;
-	border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
-	animation: borderRotate var(--d) linear infinite forwards;
+font-size: 1rem;
+border: 0.35rem solid;
+border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
+animation: borderRotate var(--d) linear infinite forwards;
 }
 
 .box:nth-child(2) {
-	border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
-	animation: borderRadial var(--d) linear infinite forwards;
+border-image: radial-gradient(ellipse at var(--gradX) var(--gradY), var(--c1), var(--c1) 10%, var(--c2) 40%) 30;
+animation: borderRadial var(--d) linear infinite forwards;
 }
 
 @keyframes borderRotate {
-	100% {
-		--angle: 420deg;
-	}
+100% {
+  --angle: 420deg;
+}
 }
 
 @keyframes borderRadial {
-	20% {
-		--gradX: 100%;
-		--gradY: 10%;
-	}
-	40% {
-		--gradX: 100%;
-		--gradY: 100%;
-	}
-	60% {
-		--gradX: 50%;
-		--gradY: 100%;
-	}
-	80% {
-		--gradX: 0%;
-		--gradY: 50%;
-	}
-	100% {
-		--gradX: 50%;
-		--gradY: 0%;
-	}
+20% {
+  --gradX: 100%;
+  --gradY: 10%;
+}
+40% {
+  --gradX: 100%;
+  --gradY: 100%;
+}
+60% {
+  --gradX: 50%;
+  --gradY: 100%;
+}
+80% {
+  --gradX: 0%;
+  --gradY: 50%;
+}
+100% {
+  --gradX: 50%;
+  --gradY: 0%;
+}
 }
 
 .table{
-  margin-bottom: 0 !important;
-  font-size: 1.1rem;
-  font-family:'Courier New', Courier, monospace;
+margin-bottom: 0 !important;
+font-size: 1.1rem;
+font-family:'Courier New', Courier, monospace;
 }
 
 .tableDecoration{
-  background-color: rgba(0,0,0)!important;
+background-color: rgba(0,0,0)!important;
 }
 
 thead, tbody, th, td, tr{
-  background-color: rgb(0,0,0) !important;
-  color: rgb(80, 116, 206) !important;
+background-color: rgb(0,0,0) !important;
+color: rgb(80, 116, 206) !important;
 }
 tr,td, th{
-  border-right: 1px solid white;
+border-right: 1px solid white;
 }
 
 
 @media screen and (min-width: 321px) and (max-width: 565px) {
-  .box {
-    font-size: 2vw;
-    border-width: 0.3rem;
-  }
+.box {
+  font-size: 2vw;
+  border-width: 0.3rem;
+}
 
-  .table{
-    
-  font-size: 0.6rem;
-  }
+.table{
+  
+font-size: 0.6rem;
+}
 }
 
 #goback{
-  font-size: 0.8rem;
+font-size: 0.8rem;
 }
-

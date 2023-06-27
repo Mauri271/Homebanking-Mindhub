@@ -1,50 +1,29 @@
 const { createApp } = Vue
 
-const main = createApp({
-  data() {
-  return {
-    showMessage: false,
-    message: "Navigate trough the items",
-    showNumbers:false,
-    num1: "1",
-    num2: "2",
-    num3: "3",
-    num4: "4",
-    num5: "5",
-      };
-  },
-
-  created(){
-    
-  },
-
-  methods:{
-
-    sectionsAlert(){
-        this.showMessage = true;
-        
-      this.showNumbers = true
-    }
-  }
-
-}).mount('#main')
-
 const app = createApp({
   data() {
   return {
-    showModal: true,
+    logged: false
       };
   },
 
   created(){
-    
+    axios.get('/api/clients/current')
+    .then(response => {
+     if(response.status == 200){
+      this.logged = true
+     } else if (response.status != 200 || response.status !== 201){
+      this.logged = false
+     }
+    })
+    .catch(err => { console.log(err)})
   },
 
   methods:{
-
-    closeModal(){        
-      this.showModal = false
-    },
+    logOut(){
+      axios.post('/api/logout')
+      .then(response => window.location.href="../htmlPages/login.html")
+    }
   }
 
 })
