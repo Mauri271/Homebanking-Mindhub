@@ -12,8 +12,8 @@
 </head>
 <body>
 
-  <header id="logout">
-    <nav class="navbar navbar-expand-lg ">
+  <header id="app">
+    <nav class="navbar navbar-expand-lg text-center">
       <div class="container">
         <a class="navbar-brand" href="#"><img class="logo" src="../resources/echanizBank.png" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -39,7 +39,10 @@
             </li>
           </ul>
           <div class="d-flex align-items-center">
-            <a href="../htmlPages/login.html">
+            <a v-if="logged == false" href="../htmlPages/login.html">
+              <button class="btn btn-primary" type="button">Log in</button>
+            </a>
+            <a v-else href="../htmlPages/login.html">
               <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
             </a>
             <button class="btn btn-primary ml-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"

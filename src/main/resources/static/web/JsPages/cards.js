@@ -19,6 +19,7 @@ const app = createApp({
             
           this.cards= res.data.cards.sort((a,b) => a.id - b.id)
           console.log(this.cards)
+          
 
           })
           .catch(err=> console.log(err))

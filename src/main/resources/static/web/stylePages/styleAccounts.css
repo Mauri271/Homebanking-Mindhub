@@ -15,7 +15,7 @@ background-color: rgba(0,0,0);
 border: 1px 2px 2px 1px solid rgb(29, 183, 218,0.3);
 }
 
-h1,h3,h2,p{
+h1,h3,p{
   color: rgb(248, 240, 249) !important;
 }
 
@@ -29,7 +29,7 @@ h5{
   box-shadow:1px 2px 2px 1px rgb(39, 7, 56)!important;
 }
 
-header,body{
+body{
   background-color: rgba(30, 30,47, 1) !important;
 }
 
@@ -82,11 +82,6 @@ nav, footer{
 border-bottom: 1px solid rgb(80, 116, 206);
 }
 
-footer{
-  /* border-top: 1px solid rgb(29, 183, 218)  !important; */
-  max-width: 100vw;
-}
-
 main{
   background-color: rgba(30, 30,47, 1) !important;
   min-height: 85vh;
@@ -117,6 +112,7 @@ input{
 .card{
   background-color: rgba(0, 0, 0, 0.635);
   border: 1px solid rgb(1, 13, 15);
+  height: 474.16px;
 }
 
 .card:hover{
@@ -143,25 +139,14 @@ box-shadow: 10px 10px 7px 0px rgb(29, 183, 218,0.3);
   background-color: rgb(248, 240, 249);
 }
 
-div:nth-child(1) {
-  font-family: 'Crimson Pro', serif;
-  font-size: 1.2rem;
-}
-div:nth-child(2) {
-  font-family: 'Literata’, serif';
-}
-
 #ulNav{
   margin-right: 7rem !important;
 }
 
-span{
-  margin-right: 3rem !important;
-}
 
 .btn-close{
-  color: rgb(7, 15, 20);
-  border: 1px solid rgb(27, 10, 36);
+  color: rgb(207, 217, 223);
+  border: 1px solid rgb(244, 240, 246);
 }
 
 #logIn{
@@ -177,13 +162,20 @@ span{
     text-decoration: none;
   }
 .offcanvas-body{
-  background: linear-gradient(135deg, rgb(11, 114, 137) 10%, rgb(3, 82, 100)100%); 
+  background-color: #192236;
+  /* border-left: 1px solid white; */
+  
 }
 
 .offcanvas-header{
-  background-color: rgb(3, 82, 100);
+  background-color: #192236;
+  /* border-left: 1px solid white;   */
+  /* border-bottom: 1px solid white; */
 }
 
+hr{
+  color: white;
+}
 
 
 

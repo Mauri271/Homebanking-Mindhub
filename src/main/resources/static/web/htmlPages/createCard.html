@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
+    <link rel="stylesheet" href="../stylePages/styleAccounts.css">
+    <link rel="stylesheet" href="../stylePages/styleCreateCards.css">
+    <link rel="shortcut icon" href="../resources/echanizBank.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+
+    <title>Create Cards</title>
+</head>
+<body>
+
+  <header id="main">
+    <nav class="navbar navbar-expand-lg text-center">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img class="logo" src="../resources/echanizBank.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/accounts.html">Accounts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/Cards.html">Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/investments.html">Investment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../htmlPages/loans.html">Loans</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <a href="../htmlPages/login.html">
+              <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
+            </a>
+            <button class="btn btn-primary ml-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+              aria-controls="offcanvasExample">
+              <i class="bi bi-list-columns-reverse"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    
+
+
+  <main id="app" class="d-flex flex-column justify-content-center align-items-center" >
+
+    <!-- ------------------------------- RIGHT MODAL SECTION ------------------------------------ -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel"><img class="logoCanvas"
+            src="../resources/echanizBank.png" alt="logo">
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column gap-4">
+        <div>
+          <ul class="d-flex flex-column gap-1 list-unstyled">
+            <li><a class="dropdown-item" href="#"> <i class="bi bi-cash-coin me-3"></i>Debts & Credit</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-piggy-bank-fill me-3"></i>Saving and Budgeting</a>
+            </li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-wallet2 me-3"></i>Investing & Retirement</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-currency-exchange me-3"></i> Currency Exchange</a>
+            </li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-hand-thumbs-down me-3"></i>Taxes</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-lock-fill me-3"></i>Security</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-person-vcard me-3"></i>Contact</a></li>
+            <hr>
+            <li> <a class="dropdown-item" href="#"> <i class="bi bi-exclamation-circle me-3"></i>Work with Us</a></li>
+            <hr>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <!-- ------------------------------------PROMOTIONS ------------------------------ -->
+<div class="d-flex flex-column align-items-center mt-3 gap-5">
+  
+    <h1 class="font-monospace text-center mt-3"  >Say goodbye to cash with your new Mindhub card</h1>
+
+    <section >
+      <img src="../resources/shop0.jpg" alt="">
+      <img src="../resources/shop1.jpg" alt="">
+      <img src="../resources/shop2.jpg" alt="">
+      <img src="../resources/shop3.jpg" alt="">
+      <img src="../resources/shop4.jpg" alt="">
+    </section>
+   
+<div class="m-3 bg-gradient p-5 border-black">
+  <h2 class="font-monospace text-white">Let's get to it</h2>
+  <form @submit.prevent class="d-flex flex-column gap-3 bg-gradient p-3">
+    <label for="cardTypeSelect" class="text-white text-center">Pick your card's type</label>
+    <select v-model="cardType" name="cardType" id="cardTypeSelect" class="form-select bg-gradient text-bg-dark  border-light text-center">
+      <option value="">Card Type</option>
+      <option value="CREDIT">Credit</option>
+      <option value="DEBIT">Debit</option>
+    </select>
+    <label for="cardColorSelect" class="text-white text-center">Pick your card's color</label>
+    <select v-model="cardColor" name="cardColor" id="cardColorSelect" class="form-select bg-gradient text-bg-dark border-light text-center">
+      <option value="">Card Color</option>
+      <option value="GOLD">Gold</option>
+      <option value="SILVER">Silver</option>
+      <option value="TITANIUM">Titanium</option>
+    </select>
+    <button class="bg-gradient text-bg-dark text-center justify-content-center btn border-light" type="submit" @click="createCards()" @click="cardCreated()" @click="emptyField()" @click="repeatedCard()">Create Card</button>
+  </form>
+</div>
+
+
+
+</div>    
+    </main>
+
+    <footer id="coin">
+      <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark"
+        transparent="false" show-symbol-logo="true"></div>
+    </footer>
+  
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+       <script src="../JsPages/createCards.js"></script>
+
+</body>
+</html>

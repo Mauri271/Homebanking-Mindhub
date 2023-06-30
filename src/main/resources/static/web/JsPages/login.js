@@ -7,6 +7,8 @@ createApp({
     password:"",
     firstName:"",
     lastName:"",
+    emailRegistered:"",
+    registeredPassword:""
       };
   },
 
@@ -15,6 +17,14 @@ createApp({
   },
 
   methods:{
+
+    loginError(){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill all the fields',
+      })
+    },
 
     login(){
     
@@ -26,9 +36,10 @@ createApp({
         }
     })
     .catch(error => {
-        this.err = "Invalid Data"
-        console.log(this.err)
-        this.showNotification(this.err, 'error')
+
+   if(error){
+    this.loginError()
+   }
     })
   },
 
@@ -36,39 +47,47 @@ createApp({
     alert("An email has been sent to reset your password")
   },
 
-  register(){
-    axios.post(`/api/clients?firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
-    .then(response => {
-
-        if(response.status === 201 || response.status == 200){
-            this.showNotification('Registered Client', 'success')
-            window.location.href= "../htmlPages/index.html"
-        } 
+  registerError(){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please fill all the fields',
+      background:'#0000'
     })
-    .catch(error => { console.log(error)
+  },
+
+  register(){
+
+    console.log(this.firstName, this.lastName, this.registeredPassword,this.emailRegistered)
+    axios.post('/api/clients ' , `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.emailRegistered}&password=${this.registeredPassword}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
+    .then(response => {      
+
+            axios.post('/api/login', `email=${this.emailRegistered}&password=${this.registeredPassword}`)
+            .then(response => {
+              window.location.href= "../htmlPages/index.html"
+              console.log(response)
+              
+            })
+            .catch(err => {
+              console.log(err)
+            
+              
+            })
+            
+      
+    })
+    .catch(error => {
+
+      
     
-        this.err = error.response.data;
-        console.log(this.err)
-        this.showNotification(this.err, 'error');
+     if(error){
+      this.registerError();
+     }
 
     })
   },
-  showNotification(message, type) {
-    const toast = document.createElement('div');
-    toast.classList.add('toastify', type);
-    toast.textContent = message;
-    document.body.appendChild(toast);
 
-    setTimeout(() => {
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => {
-          document.body.removeChild(toast);
-        }, 300);
-      }, 2000);
-    }, 100);
-},
+  
 }
 
 }).mount('#app')

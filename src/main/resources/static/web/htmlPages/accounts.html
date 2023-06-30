@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../stylePages/styleAccounts.css">
   <link rel="shortcut icon" href="../resources/echanizBank.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  
   <title>Accounts</title>
 </head>
 
@@ -18,7 +19,7 @@
 
 
   <header id="logout">
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg text-center">
       <div class="container">
         <a class="navbar-brand" href="#"><img class="logo" src="../resources/echanizBank.png" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -44,7 +45,7 @@
             </li>
           </ul>
           <div class="d-flex align-items-center">
-            <a href="../htmlPages/login.html">
+            <a v-else href="../htmlPages/login.html">
               <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
             </a>
             <button class="btn btn-primary ml-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
@@ -62,17 +63,24 @@
 
   
 
-  <main id="app" class="d-flex flex-column" >    
+  <main id="app" class="d-flex flex-column align-items-center" >   
+    
+    
     <h1 class="text-center font-monospace mt-5">Hi {{clients.firstName}} {{clients.lastName}}, welcome to your Accounts</h1>
-    <h2 class="text-center font-monospace mt-5">Accounts</h2>
+    <h2 class="text-center text-white font-monospace mt-5">Accounts</h2>
     <section class=" d-flex align-items- justify-content-around flex-wrap">
 
     <div class="d-flex flex-column gap-3 p-2">
+      <div class=" d-flex justify-content-center align-items-center" v-if="clients.accounts.length  < 3">
+        <h2 class="font-monospace text-white">
+          <button class="bg-gradient text-bg-dark justify-content-center btn border-light" type="submit"   @click="createAccount()">Create Account</button>
+        </h2>
+      </div>
       <div>
         <section class="container col-12 d-flex justify-content-center flex-wrap gap-5">
           <div v-for="client of accounts">
-            <div id="card" class="card col-4" style="width: 18rem;">
-              <img class="logo-card " src="../resources/account.jpg" class="card-img-top" alt="...">
+            <div id="card" class="card col-4" style="width: 20rem;">
+              <img src="../resources/account.jpg" class="card-img-top logo-card " alt="...">
               <div class="card-body bg-gradient">
                 <h5 class="card-title text-center gap-1"> <strong> Account: </strong>
                    {{client.number}}</h5>
@@ -84,17 +92,18 @@
               </ul>
             </div>
           </div>
-        </section>
+        </section>    
       </div>
+    </div>
 
-      
+
     
-    <div class="d-flex flex-column gap-3 p-2">
-      <h2 class="text-center font-monospace mt-5">Loans</h2>
+    <div class="d-flex flex-column gap-3 p-2" v-if="clients.loans.length >= 1">
+      <h2 class="text-center font-monospace mt-5 text-white">Loans</h2>
       <div>
         <section class="container col-12 d-flex justify-content-center flex-wrap gap-5">
-          <div v-if="loans.legth !== 0" v-for="loan of loans">
-            <div  class="card" class="card col-4" style="width: 18rem;">
+          <div v-if="loans.length !== 0" v-for="loan of loans">
+            <div  class="card" class="card col-4" style="width: 20rem;">
               <img class="logo-card " src="../resources/loans.jpg" class="card-img-top" alt="...">
               <div class="card-body bg-gradient">
                 <h5 class="card-title text-center gap-1"> <strong> Loans </strong>
@@ -119,9 +128,8 @@
                 src="../resources/echanizBank.png" alt="logo">
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
+          </div>          
           <div class="offcanvas-body d-flex flex-column gap-5">
-
             <div>
               <ul class="d-flex flex-column gap-1 list-unstyled">
                 <li><a class="dropdown-item" href="#"> <i class="bi bi-cash-coin me-3"></i>Debts & Credit</a></li>
@@ -147,10 +155,11 @@
               </ul>
             </div>
           </div>
+        </div>
       </aside>
 
 
-    </div>
+    
   </section>
 
   </main>

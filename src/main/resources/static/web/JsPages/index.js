@@ -17,6 +17,7 @@ const app = createApp({
      }
     })
     .catch(err => { console.log(err)})
+    AOS.init();
   },
 
   methods:{

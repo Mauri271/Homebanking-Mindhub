@@ -3,7 +3,6 @@ package com.mindhub.homebanking.dtos;
 import com.mindhub.homebanking.enums.CardColor;
 import com.mindhub.homebanking.enums.CardType;
 import com.mindhub.homebanking.models.Card;
-import com.mindhub.homebanking.models.Client;
 
 import java.time.LocalDate;
 

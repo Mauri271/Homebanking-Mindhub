@@ -14,6 +14,7 @@
     cursor: pointer;
     perspective: 1000px;
     background:rgba(30, 30,47, 1) !important;
+    border:none;
 }
 
 .card-inner {
@@ -35,6 +36,7 @@
     overflow: hidden;
     z-index: 1;
     backface-visibility: hidden;
+    border-radius: 18px;
 }
 
 /* .front{
@@ -54,6 +56,7 @@
     left: 0;
     opacity: 0.3;
     z-index: -1;
+    object-fit: contain !important;
 }
 
 .card-no {
@@ -174,3 +177,9 @@ p{
         display: none;
     }
 }
+
+section{
+    width:auto;
+
+}
+

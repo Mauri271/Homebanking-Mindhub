@@ -1,8 +1,8 @@
 package com.mindhub.homebanking.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mindhub.homebanking.enums.CardType;
 import com.mindhub.homebanking.enums.CardColor;
+import com.mindhub.homebanking.enums.CardType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
