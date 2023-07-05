@@ -41,8 +41,8 @@ public class HomebankingApplication {
 
 			Account account1 = new Account("VIN-001", LocalDate.now(), 2000.0);
 			Account account2 = new Account("VIN-002", LocalDate.now().plusDays(1), -16000.0);
-			Account account3 = new Account("VIN-003", LocalDate.now().plusDays(1), 300.0);
-			Account account4 = new Account("VIN-004", LocalDate.now().plusDays(1), 6000.0);
+			Account account3 = new Account("VIN-003", LocalDate.now().plusDays(1), 9000.0);
+			Account account4 = new Account("VIN-004", LocalDate.now().plusDays(1), 5500.0);
 			client1.addAccounts(account1);
 			client1.addAccounts(account2);
 			client2.addAccounts(account3);
@@ -54,14 +54,14 @@ public class HomebankingApplication {
 
 //------------------------------------------------------------------------------------------------
 
-			Transaction transaction1 = new Transaction(TransactionType.DEBIT, -4000.0, "BTC Buy", LocalDateTime.now(), account1);
-			Transaction transaction2 = new Transaction(TransactionType.CREDIT, 6000.0, "ETH Sell", LocalDateTime.now(), account1);
-			Transaction transaction3 = new Transaction(TransactionType.DEBIT, -20000.0, "Loan", LocalDateTime.now(), account2);
-			Transaction transaction4 = new Transaction(TransactionType.CREDIT, 4000.0, "USDT Earn", LocalDateTime.now(), account2);
-			Transaction transaction5 = new Transaction(TransactionType.DEBIT, -780.0, "BTC Sell", LocalDateTime.now(), account3);
-			Transaction transaction6 = new Transaction(TransactionType.CREDIT, 10000.0, "USDT Earn", LocalDateTime.now(), account3);
-			Transaction transaction7 = new Transaction(TransactionType.DEBIT, -1500.0, "LTC Buy", LocalDateTime.now(), account4);
-			Transaction transaction8 = new Transaction(TransactionType.CREDIT, 7000.0, "USDT Earn", LocalDateTime.now(), account4);
+			Transaction transaction1 = new Transaction(TransactionType.DEBIT, -4000.0, "BTC Buy", LocalDateTime.now());
+			Transaction transaction2 = new Transaction(TransactionType.CREDIT, 6000.0, "ETH Sell", LocalDateTime.now());
+			Transaction transaction3 = new Transaction(TransactionType.DEBIT, -20000.0, "Loan", LocalDateTime.now());
+			Transaction transaction4 = new Transaction(TransactionType.CREDIT, 4000.0, "USDT Earn", LocalDateTime.now());
+			Transaction transaction5 = new Transaction(TransactionType.DEBIT, -1000.0, "BTC Sell", LocalDateTime.now());
+			Transaction transaction6 = new Transaction(TransactionType.CREDIT, 10000.0, "USDT Earn", LocalDateTime.now());
+			Transaction transaction7 = new Transaction(TransactionType.DEBIT, -1500.0, "LTC Buy", LocalDateTime.now());
+			Transaction transaction8 = new Transaction(TransactionType.CREDIT, 7000.0, "USDT Earn", LocalDateTime.now());
 
 
 			account1.addTransactions(transaction1);

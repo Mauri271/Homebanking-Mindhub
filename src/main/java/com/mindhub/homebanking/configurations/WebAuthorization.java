@@ -8,25 +8,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @EnableWebSecurity
 @Configuration
-
 class WebAuthorization {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/clients/current", "/api/clients/current/cards", "/api/clients/current/accounts").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/api/clients/current/cards", "/api/clients/current/accounts", "/api/transactions").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
                 .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout").permitAll()
-                .antMatchers("/web/htmlPages/accounts.html", "/web/htmlPages/Cards.html", "/web/htmlPages/account.html", "/web/htmlPages/investments.html", "/web/htmlPages/loans.html", "/api/clients/current","/web/htmlPages/createCard.html","/api/accounts/").hasAuthority("CLIENT")
-                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients").hasAuthority("ADMIN");
+                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients").hasAuthority("ADMIN")
+                .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT")
+                .anyRequest().denyAll();
 
 
 
@@ -39,30 +38,23 @@ class WebAuthorization {
 
         http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
 
-        // turn off checking for CSRF tokens
 
+        // turn off checking for CSRF tokens
         http.csrf().disable();
 
-
-
         //disabling frameOptions so h2-console can be accessed
-
         http.headers().frameOptions().disable();
 
         // if user is not authenticated, just send an authentication failure response
-
         http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 
         // if login is successful, just clear the flags asking for authentication
-
         http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));
 
         // if login fails, just send an authentication failure response
-
         http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 
         // if logout is successful, just send a success response
-
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 
         return http.build();

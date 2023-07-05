@@ -23,7 +23,7 @@ createApp({
           
           this.account = res.data
           console.log(this.account)
-          this.transactions = this.account.transaction.sort((a,b) => b.amount-a.amount);
+          this.transactions = this.account.transaction.sort((a,b) => b.date - a.date);
           console.log(this.transactions)
 
           })

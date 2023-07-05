@@ -26,12 +26,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(TransactionType type, double amount, String description, LocalDateTime date, Account account) {
+    public Transaction(TransactionType type, double amount, String description, LocalDateTime date) {
         this.type = type;
         this.amount = amount;
         this.description = description;
         this.date = date;
-        this.account = account;
     }
 
     public Long getId() {
@@ -70,9 +69,7 @@ public class Transaction {
         this.date = date;
     }
     @JsonIgnore
-    public Account getAccount() {
-        return account;
-    }
+
 
     public void setAccount(Account account) {
         this.account = account;

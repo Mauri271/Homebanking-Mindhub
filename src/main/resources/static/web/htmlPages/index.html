@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto" >
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link active" href="#">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../htmlPages/accounts.html">Accounts</a>
@@ -40,7 +40,7 @@
               <a class="nav-link" href="../htmlPages/Cards.html">Cards</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../htmlPages/investments.html">Investment</a>
+              <a class="nav-link" href="../htmlPages/transfers.html">Transfers</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../htmlPages/loans.html">Loans</a>
@@ -96,11 +96,9 @@
           <div class="col-12">
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
               <div class="d-flex">
-                <!-- Mostrar cuando el usuario NO está logeado -->
                 <a v-if="!logged" href="../htmlPages/login.html">
                   <button class="btn btn-primary" type="button">Log in</button>
                 </a>
-                <!-- Mostrar cuando el usuario está logeado -->
                 <a v-else href="../htmlPages/login.html">
                   <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
                 </a>

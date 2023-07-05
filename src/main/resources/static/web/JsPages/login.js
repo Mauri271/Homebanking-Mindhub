@@ -64,7 +64,7 @@ createApp({
 
             axios.post('/api/login', `email=${this.emailRegistered}&password=${this.registeredPassword}`)
             .then(response => {
-              window.location.href= "../htmlPages/index.html"
+              window.location.href= "../htmlPages/accounts.html"
               console.log(response)
               
             })

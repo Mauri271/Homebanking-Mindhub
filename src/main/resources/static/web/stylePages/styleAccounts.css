@@ -155,7 +155,7 @@ box-shadow: 10px 10px 7px 0px rgb(29, 183, 218,0.3);
 
 .active{
   text-decoration:underline rgb(248, 240, 249);
-  font-size: 1.3rem;
+  font-weight: 600;
 }
 
   a{
