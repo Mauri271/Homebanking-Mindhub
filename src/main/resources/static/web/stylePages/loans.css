@@ -1,0 +1,46 @@
+Estilos generales
+section {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Estilos para el formulario */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #141313;
+    border-radius: 10px;
+  }
+  
+  legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  
+  /* Estilos responsive */
+  @media (max-width: 600px) {
+    form {
+      max-width: 90%;
+    }
+  }
+  

@@ -30,13 +30,6 @@ createApp({
           .catch(err=> console.log(err))
   },
 
-    closeModal(){
-      
-    }
-
-
-
-
   }
 
 

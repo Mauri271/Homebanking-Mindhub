@@ -17,19 +17,19 @@ createApp({
   methods:{
 
   loadData(){
-          axios.get("http://localhost:8080/api/clients/current")
+          axios.get("/api/clients/current")
           .then(res => {            
             
           this.clients= res.data         
-          this.accounts = this.clients.accounts.sort((a,b) => a.balance - b.balance);
-          this.loans = this.clients.loans
+          this.accounts = this.clients.accounts.sort((a,b) => a.id - b.id);
+          this.loans = this.clients.loans.sort((a,b) => b.id - a.id);
 
           })
           .catch(err=> console.log(err))
   },
 
   createAccount(){
-    axios.post("http://localhost:8080/api/clients/current/accounts")
+    axios.post("/api/clients/current/accounts")
     .then(response => {
       if( response.status == 201){
         this.loadData()

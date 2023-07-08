@@ -27,13 +27,17 @@ createApp({
     },
 
     login(){
+      
     
     axios.post(`/api/login?email=${this.email}&password=${this.password}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
     .then(response => {
 
-        if(response.status === 200){
-            window.location.href= "../htmlPages/accounts.html"
+        if(this.email == "admin@admin"){
+          window.location.href = "../htmlPages/manager.html"
+        } else {
+          window.location.href= "../htmlPages/accounts.html"
         }
+       
     })
     .catch(error => {
 

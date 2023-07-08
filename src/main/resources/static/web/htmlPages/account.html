@@ -45,10 +45,7 @@
             </li>
           </ul>
           <div class="d-flex align-items-center">
-            <a v-if="logged == false" href="../htmlPages/login.html">
-              <button class="btn btn-primary" type="button">Log in</button>
-            </a>
-            <a v-else href="../htmlPages/login.html">
+            <a href="../htmlPages/login.html">
               <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
             </a>
             <button class="btn btn-primary ml-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
@@ -110,6 +107,7 @@
               <hr>
             </ul>
           </div>
+        </div>
         </div>
     </aside>
 

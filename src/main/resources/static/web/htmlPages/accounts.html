@@ -101,6 +101,15 @@
     <div class="d-flex flex-column gap-3 p-2" v-if="clients.loans.length >= 1">
       <h2 class="text-center font-monospace mt-5 text-white">Loans</h2>
       <div>
+        <section class="d-flex flex-column justify-content-center align-items-center mt-2 mb-5">
+          <div>
+            <h2 class="text-white text-center"> Apply for a loan </h2>
+          </div>
+          <div class="mt-2">
+            <a href="../htmlPages/loans.html"><button class="bg-gradient text-bg-dark text-center justify-content-center btn border-light" type="submit" @click="transfer()">Loan request</button>
+            </a>
+          </div>
+        </section>
         <section class="container col-12 d-flex justify-content-center flex-wrap gap-5">
           <div v-if="loans.length !== 0" v-for="loan of loans">
             <div  class="card" class="card col-4" style="width: 20rem;">
@@ -118,6 +127,9 @@
           </div>
         </section>
       </div>
+
+
+      
       
 
       <aside>
@@ -164,7 +176,7 @@
 
   </main>
 
-  <footer id="coin">
+  <footer id="coin" class="mt-5">
     <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark"
       transparent="false" show-symbol-logo="true"></div>
   </footer>
