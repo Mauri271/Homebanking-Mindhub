@@ -10,6 +10,9 @@ import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.models.ClientLoan;
 import com.mindhub.homebanking.models.Loan;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +33,7 @@ import static java.util.stream.Collectors.toSet;
 public class LoanController {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Autowired
     private ClientLoanRepository clientLoanRepository;
@@ -39,18 +42,18 @@ public class LoanController {
     private TransactionRepository transactionRepository;
 
     @Autowired
-    private AccountsRepository accountsRepository;
+    private AccountService accountService;
 
     @Autowired
-    private LoanRepository loanRepository;
+    private LoanService loanService;
 
     @Transactional
     @PostMapping("/loans")
     public ResponseEntity<Object> clientLoanCreation(Authentication authentication, @RequestBody LoanRequestDTO loanRequestDTO) {
 
-        Client client = clientRepository.findByEmail(authentication.getName());
-        Loan loan = loanRepository.findByName(loanRequestDTO.getLoanType());
-        Account account = accountsRepository.findByNumber(loanRequestDTO.getDestinationAccount());
+        Client client = clientService.findClientByEmail(authentication.getName());
+        Loan loan = loanService.findByName(loanRequestDTO.getLoanType());
+        Account account = accountService.findByNumber(loanRequestDTO.getDestinationAccount());
 
         if (loanRequestDTO.getAmount() <= 0) {
             return new ResponseEntity<>("The amount can't be 0", HttpStatus.FORBIDDEN);
@@ -87,7 +90,7 @@ public class LoanController {
 
             clientLoanRepository.save(requestedLoan);
             transactionRepository.save(loanTransaction);
-            accountsRepository.save(account);
+            accountService.saveAccount(account);
 
             return new ResponseEntity<>("Loan created", HttpStatus.CREATED);
         }
@@ -95,9 +98,6 @@ public class LoanController {
 
     @RequestMapping("/loans")
     public Set<LoanDTO> getAll() {
-        return loanRepository.findAll()
-                .stream()
-                .map(LoanDTO::new)
-                .collect(toSet());
+        return  loanService.getAll();
     }
 }

@@ -3,8 +3,8 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dtos.AccountDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.repositories.AccountsRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,36 +13,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.time.LocalDate;
 import java.util.Random;
 import java.util.Set;
-import static java.util.stream.Collectors.toSet;
 
 @RestController
 @RequestMapping("/api")
 public class AccountController {
 
     @Autowired
-    private AccountsRepository accountsRepository;
-
-
+    private AccountService accountService;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
 
 
 
     @RequestMapping("/accounts")
     public Set<AccountDTO> getAccounts() {
-        return accountsRepository.findAll().stream().map(AccountDTO::new).collect(toSet());
+        return accountService.getAllAccounts();
 
     }
 
     @RequestMapping("/accounts/{id}")
     public AccountDTO getAccount(@PathVariable Long id) {
-        return accountsRepository.findById(id).map(AccountDTO::new).orElse(null);
+        return accountService.getOneAccount(id);
     }
 
 
@@ -54,17 +50,17 @@ public class AccountController {
           do {
               Random random = new Random();
               randomNum = "VIN-" + random.nextInt(90000000) ;
-          } while (accountsRepository.findByNumber(randomNum) != null);
+          } while (accountService.findByNumber(randomNum) != null);
 
 
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findClientByEmail(authentication.getName());
         Set<Account> newAccounts = (client.getAccounts());
         if (newAccounts.size() == 3) {
             return new ResponseEntity<>("Max amount of accounts reached", HttpStatus.FORBIDDEN);
         } else {
             Account account = new Account(randomNum, LocalDate.now(),0.0);
             client.addAccounts(account);
-            accountsRepository.save(account);
+           accountService.saveAccount(account);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
     }

@@ -3,6 +3,8 @@ import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.CardService;
+import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,6 @@ import com.mindhub.homebanking.enums.CardColor;
 import com.mindhub.homebanking.enums.CardType;
 import java.time.LocalDate;
 import java.util.Random;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping
@@ -24,17 +24,17 @@ import java.util.stream.Collectors;
 public class CardController {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Autowired
-    private CardRepository cardRepository;
+    private CardService cardService;
 
 
 
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
     public ResponseEntity<Object> cardCreator(Authentication authentication, @RequestParam CardType cardType, @RequestParam CardColor cardColor) {
 
-        Client client = (clientRepository.findByEmail(authentication.getName()));
+        Client client = (clientService.findClientByEmail(authentication.getName()));
         if (cardType == null || cardColor == null) {
             return new ResponseEntity<>("Missing data", HttpStatus.NO_CONTENT);
         }
@@ -46,16 +46,16 @@ public class CardController {
             do {
                 Random random = new Random();
                 randomCardNumber = random.nextInt(9999) + " " + random.nextInt(9999) + " " + random.nextInt(9999) + " " + random.nextInt(9999);
-            } while (cardRepository.findBycardNumber(randomCardNumber) != null);
+            } while (cardService.findCardByNumber(randomCardNumber) != null);
 
 
             Card card = new Card(client.getFirstName() + " " + client.getLastName(), cardType, cardColor, randomCardNumber, randomcvvNumber, LocalDate.now(), LocalDate.now().plusYears(5));
 
-            if (cardRepository.existsByOwnerAndCardTypeAndCardColor(client, cardType, cardColor)) {
+            if (cardService.existsByOwnerAndCardTypeAndCardColor(client, cardType, cardColor)) {
                 return new ResponseEntity<>("You already own that card", HttpStatus.FORBIDDEN);
             } else {
                 client.addClientCards(card);
-                cardRepository.save(card);
+                cardService.saveCard(card);
                 return new ResponseEntity<>("Card successfully created",HttpStatus.CREATED);
             }
 

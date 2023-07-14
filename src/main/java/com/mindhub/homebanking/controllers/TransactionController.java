@@ -8,6 +8,9 @@ import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.repositories.AccountsRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,22 +25,22 @@ import java.util.Set;
         ("/api")
 public class TransactionController {
     @Autowired
-    ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Autowired
-    AccountsRepository accountsRepository;
+    private AccountService accountService;
 
     @Autowired
-    TransactionRepository transactionRepository;
+    private TransactionService transactionService;
 
     @Transactional
     @RequestMapping(path = "/transactions", method = RequestMethod.POST)
     public ResponseEntity<Object> transactionMaker(Authentication authentication, @RequestBody TransferDTO transferDTO) {
 
-        Client client = (clientRepository.findByEmail(authentication.getName()));
+        Client client = (clientService.findClientByEmail(authentication.getName()));
         Set<Account> clientAccount = (client.getAccounts());
-        Account originAccount = (accountsRepository.findByNumber(transferDTO.getOriginAccount()));
-        Account destinationAccount = (accountsRepository.findByNumber(transferDTO.getDestinationAccount()));
+        Account originAccount = (accountService.findByNumber(transferDTO.getOriginAccount()));
+        Account destinationAccount = (accountService.findByNumber(transferDTO.getDestinationAccount()));
         double transactionAmount = (transferDTO.getAmount());
         String description = (transferDTO.getDescription());
 
@@ -76,8 +79,8 @@ public class TransactionController {
             originAccount.setBalance(originAccount.getBalance() - transactionAmount);
             destinationAccount.addTransactions(destinationAccountTransaction);
             destinationAccount.setBalance(originAccount.getBalance() + transactionAmount);
-            transactionRepository.save(originAccountTransaction);
-            transactionRepository.save(destinationAccountTransaction);
+            transactionService.saveTransaction(originAccountTransaction);
+        transactionService.saveTransaction(destinationAccountTransaction);
 
             return new ResponseEntity<>("Transaction made", HttpStatus.CREATED);
         }

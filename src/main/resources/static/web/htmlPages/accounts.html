@@ -45,7 +45,7 @@
             </li>
           </ul>
           <div class="d-flex align-items-center">
-            <a v-else href="../htmlPages/login.html">
+            <a href="../htmlPages/login.html">
               <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
             </a>
             <button class="btn btn-primary ml-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
@@ -63,12 +63,12 @@
 
   
 
-  <main id="app" class="d-flex flex-column align-items-center" >   
+  <main id="app" class="d-flex flex-column align-items-center justify-content-center" >   
     
     
     <h1 class="text-center font-monospace mt-5">Welcome {{clients.firstName}} {{clients.lastName}}, take a look to your accounts</h1>
     <h2 class="text-center text-white font-monospace mt-5">Accounts</h2>
-    <section class=" d-flex align-items- justify-content-around flex-wrap">
+    <section class=" d-flex align-items-center justify-content-around flex-wrap">
 
     <div class="d-flex flex-column gap-3 p-2">
       <div class=" d-flex justify-content-center align-items-center" v-if="clients.accounts.length  < 3">
@@ -98,21 +98,12 @@
 
 
     
-    <div class="d-flex flex-column gap-3 p-2" v-if="clients.loans.length >= 1">
-      <h2 class="text-center font-monospace mt-5 text-white">Loans</h2>
+    <div class="d-flex flex-column gap-3 p-2 mt-5 justify-content-center align-items-center">            
+      <h2 class="text-center font-monospace  text-white">Loans</h2>
       <div>
-        <section class="d-flex flex-column justify-content-center align-items-center mt-2 mb-5">
-          <div>
-            <h2 class="text-white text-center"> Apply for a loan </h2>
-          </div>
-          <div class="mt-2">
-            <a href="../htmlPages/loans.html"><button class="bg-gradient text-bg-dark text-center justify-content-center btn border-light" type="submit" @click="transfer()">Loan request</button>
-            </a>
-          </div>
-        </section>
         <section class="container col-12 d-flex justify-content-center flex-wrap gap-5">
           <div v-if="loans.length !== 0" v-for="loan of loans">
-            <div  class="card" class="card col-4" style="width: 20rem;">
+            <div  class="card" class="col-4" style="width: 20rem;">
               <img class="logo-card " src="../resources/loans.jpg" class="card-img-top" alt="...">
               <div class="card-body bg-gradient">
                 <h5 class="card-title text-center gap-1"> <strong> Loans </strong>
@@ -124,6 +115,15 @@
                 <li class="list-group-item text-center accountList"><strong>Payments: </strong> {{loan.payments}}</li>
                 </ul>
             </div>
+          </div>
+        </section>
+        <section class="d-flex flex-column justify-content-center align-items-center mt-3">
+          <div>
+            <h2 class="text-white text-center"> Apply for a loan </h2>
+          </div>
+          <div class="mt-2">
+            <a href="../htmlPages/loans.html"><button class="bg-gradient text-bg-dark text-center justify-content-center btn border-light" type="submit" @click="transfer()">Loan request</button>
+            </a>
           </div>
         </section>
       </div>
@@ -169,6 +169,7 @@
           </div>
         </div>
       </aside>
+
 
 
     
