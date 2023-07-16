@@ -25,11 +25,11 @@ public class HomebankingApplication {
 	}
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;
-
-	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountsRepository accountsRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
-		return (args) -> {
-
+//
+//	@Bean
+//	public CommandLineRunner initData(ClientRepository clientRepository, AccountsRepository accountsRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
+//		return (args) -> {
+//
 //			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("melba"));
 //			Client client2 = new Client("Mauri", "Echaniz", "echanizmauricio@gmail.com", passwordEncoder.encode("mauri"));
 //			Client admin = new Client("admin", "admin", "admin@admin", passwordEncoder.encode("admin"));
@@ -125,6 +125,6 @@ public class HomebankingApplication {
 //			Card card3 = new Card("Mauricio Echaniz", CardType.CREDIT, CardColor.SILVER," 4569 8526 8749 6587",377,LocalDate.now(),LocalDate.now().plusYears(5));
 //			client2.addClientCards(card3);
 //			cardRepository.save(card3);
-		};
-	}
+//		};
+//	}
 }

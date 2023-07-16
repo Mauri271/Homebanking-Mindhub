@@ -103,8 +103,8 @@
                 <legend class="text-center">Loan Type</legend>
                 <div class="d-flex justify-content-center w-100">
                   <label for="loanType" class="d-flex align-items-center justify-content-evenly w-100">
-                    <select v-model="selectedLoan" name="loanType" id="loanType" class="d-flex align-items-center justify-content-evenly w-100">
-                      <option disabled class="text-center" value=""><strong>Loan Type</strong></option>
+                    <select v-model="selectedLoan" name="loanType" id="loanType" class="d-flex align-items-center justify-content-evenly w-100">                   
+                      <option  class="text-center" disabled selected value="">Loan Type</option>
                       <option v-for="loan of loansData" class="w-100" :value="loan">{{loan.name}} / Available Amount: ${{loan.maxAmount.toLocaleString('en-US')}}</option>
                     </select>
                   </label>
