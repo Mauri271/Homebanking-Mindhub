@@ -59,8 +59,8 @@ const app = createApp({
         }).then((result) => {
           if (result.isConfirmed) {
             Swal.fire(
-              'Created!',
-              'Your loan has been approved.',
+              'Transfered!',
+              'Money sent succesfully.',
               'success',
               this.transfer()
             )

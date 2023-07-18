@@ -30,6 +30,11 @@ public class AccountServiceImplement implements AccountService {
     }
 
     @Override
+    public Account findById(Long id) {
+        return accountsRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public Account findByNumber(String number) {
        return accountsRepository.findByNumber(number);
     }

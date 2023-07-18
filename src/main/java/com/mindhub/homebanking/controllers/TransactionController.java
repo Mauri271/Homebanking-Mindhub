@@ -34,7 +34,7 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @Transactional
-    @RequestMapping(path = "/transactions", method = RequestMethod.POST)
+    @PostMapping(path = "/transactions")
     public ResponseEntity<Object> transactionMaker(Authentication authentication, @RequestBody TransferDTO transferDTO) {
 
         Client client = (clientService.findClientByEmail(authentication.getName()));
@@ -72,15 +72,17 @@ public class TransactionController {
             return new ResponseEntity<>("Insufficient funds", HttpStatus.FORBIDDEN);
         }
 
-            Transaction originAccountTransaction = new Transaction(TransactionType.DEBIT, -transactionAmount, description, LocalDateTime.now());
-            Transaction destinationAccountTransaction = new Transaction(TransactionType.CREDIT, transactionAmount, description, LocalDateTime.now());
+            Transaction originAccountTransaction = new Transaction(TransactionType.DEBIT, -transactionAmount, description, LocalDateTime.now(),false);
+            Transaction destinationAccountTransaction = new Transaction(TransactionType.CREDIT, transactionAmount, description, LocalDateTime.now(),false);
 
             originAccount.addTransactions(originAccountTransaction);
             originAccount.setBalance(originAccount.getBalance() - transactionAmount);
+
             destinationAccount.addTransactions(destinationAccountTransaction);
-            destinationAccount.setBalance(originAccount.getBalance() + transactionAmount);
+            destinationAccount.setBalance(destinationAccount.getBalance() + transactionAmount);
+
             transactionService.saveTransaction(originAccountTransaction);
-        transactionService.saveTransaction(destinationAccountTransaction);
+            transactionService.saveTransaction(destinationAccountTransaction);
 
             return new ResponseEntity<>("Transaction made", HttpStatus.CREATED);
         }

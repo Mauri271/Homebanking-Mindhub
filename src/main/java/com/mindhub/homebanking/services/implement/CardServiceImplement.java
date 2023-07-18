@@ -21,12 +21,15 @@ public class CardServiceImplement implements CardService {
     }
 
     @Override
+    public Card findById(Long id) {return cardRepository.findById(id).orElse(null);}
+
+    @Override
     public void saveCard(Card card) {
     cardRepository.save(card);
     }
 
     @Override
-    public boolean existsByOwnerAndCardTypeAndCardColor(Client client, CardType cardType, CardColor cardColor) {
-        return cardRepository.existsByOwnerAndCardTypeAndCardColor(client, cardType,cardColor);
+    public boolean existsByOwnerAndCardTypeAndCardColorAndIsActive(Client client, CardType cardType, CardColor cardColor, Boolean isActive) {
+        return cardRepository.existsByOwnerAndCardTypeAndCardColorAndIsActive(client, cardType,cardColor, isActive);
     }
 }

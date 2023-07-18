@@ -13,6 +13,8 @@ public interface AccountService {
 
    AccountDTO getOneAccount(Long id);
 
+   Account findById(Long id);
+
    Account findByNumber(String number);
 
 }

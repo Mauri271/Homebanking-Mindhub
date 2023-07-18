@@ -9,6 +9,7 @@ const app = createApp({
     destinationAccount:"",
     amount:0,
     payments:"",
+    interests:0
       }
       },
 
@@ -108,7 +109,7 @@ const app = createApp({
                 color:'#ffffff'
               })
         }
-        else if(this.selectedLoan.name == undefined){
+        else if(!this.selectedLoan.name){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -117,7 +118,7 @@ const app = createApp({
                 color:'#ffffff'
               })
         }
-        else if(this.destinationAccount == ""){
+        else if(!this.destinationAccount){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -147,7 +148,7 @@ const app = createApp({
                 color:'#ffffff'
               })
         } 
-        else if(this.payments == ""){
+        else if(!this.payments){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -163,6 +164,16 @@ const app = createApp({
 
         
     },
+
+    computed: {
+      loanTotal(){
+        const loanAmount = parseFloat(this.amount)
+        const total = loanAmount + (loanAmount * 0.2);
+        this.interests = loanAmount *0.2
+        return total.toLocaleString('en-US');
+        
+      }
+    }
 
 
   })

@@ -17,12 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
@@ -54,6 +53,7 @@ public class LoanController {
         Client client = clientService.findClientByEmail(authentication.getName());
         Loan loan = loanService.findByName(loanRequestDTO.getLoanType());
         Account account = accountService.findByNumber(loanRequestDTO.getDestinationAccount());
+        List<Loan> allLoans = loanService.getAllLoans();
 
         if (loanRequestDTO.getAmount() <= 0) {
             return new ResponseEntity<>("The amount can't be 0", HttpStatus.FORBIDDEN);
@@ -78,9 +78,17 @@ public class LoanController {
         }
         if (account == null) {
             return new ResponseEntity<>("The account doesn't exist", HttpStatus.FORBIDDEN);
-        } else {
-            ClientLoan requestedLoan = new ClientLoan(loanRequestDTO.getAmount() + loanRequestDTO.getAmount() * 0.2, loanRequestDTO.getPayments());
-            Transaction loanTransaction = new Transaction(TransactionType.CREDIT, loanRequestDTO.getAmount(), loanRequestDTO.getLoanType() + " " + "loan approved", LocalDateTime.now());
+        }
+
+
+        else {
+
+            loanRequestDTO.getLoanType().equals(allLoans.stream().map(l -> l.getName()));
+                double interest = loanRequestDTO.getAmount() + loanRequestDTO.getAmount() * loan.getInterest();
+                ClientLoan requestedLoan = new ClientLoan(interest, loanRequestDTO.getPayments());
+
+
+            Transaction loanTransaction = new Transaction(TransactionType.CREDIT, loanRequestDTO.getAmount(), loanRequestDTO.getLoanType() + " " + "loan approved", LocalDateTime.now(), false);
 
             account.setBalance(account.getBalance() + loanRequestDTO.getAmount());
             client.addClientLoans(requestedLoan);
@@ -96,7 +104,7 @@ public class LoanController {
         }
     }
 
-    @RequestMapping("/loans")
+    @GetMapping("/loans")
     public Set<LoanDTO> getAll() {
         return  loanService.getAll();
     }

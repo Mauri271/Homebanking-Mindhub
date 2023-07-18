@@ -6,6 +6,7 @@ createApp({
         transactions:[],
         account: [],
         params: "",
+        hidden: null
       };
   },
 
@@ -23,7 +24,12 @@ createApp({
           
           this.account = res.data
           console.log(this.account)
-          this.transactions = this.account.transaction.sort((a,b) => b.date - a.date);
+          this.transactions = this.account.transaction.sort((a,b) => b.id - a.id);
+
+          this.hidden = this.transactions.map(transaction => transaction.hidden).find(h => h )
+       
+          console.log(this.hidden)
+
           console.log(this.transactions)
 
           })

@@ -30,13 +30,16 @@ public class Account {
     private LocalDate date;
     private double balance;
 
+    private Boolean deleted;
+
 
     public Account(){}
 
-    public Account(String number, LocalDate date, Double balance){
+    public Account(String number, LocalDate date, Double balance, Boolean deleted){
         this.number = number;
         this.date = date;
         this.balance = balance;
+        this.deleted = deleted;
     }
 
 
@@ -76,7 +79,15 @@ public class Account {
         this.balance = balance;
     }
 
-@JsonIgnore
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    @JsonIgnore
     public Set<Transaction> getTransactions() {
         return transactions;
     }

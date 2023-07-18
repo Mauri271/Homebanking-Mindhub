@@ -9,6 +9,8 @@ import java.util.Set;
 public class LoanDTO {
     private String name;
     private Double maxAmount;
+
+    private Double interest;
     private Set<Integer> payments = new HashSet<>();
 
 
@@ -16,6 +18,7 @@ public class LoanDTO {
         this.name = loan.getName();
         this.maxAmount = loan.getMaxAmount();
         this.payments = loan.getPayments();
+        this.interest = loan.getInterest();
     }
 
     public String getName() {
@@ -29,4 +32,6 @@ public class LoanDTO {
     public Set<Integer> getPayments() {
         return payments;
     }
+
+    public Double getInterest() { return interest; }
 }

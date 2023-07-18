@@ -4,7 +4,7 @@ createApp({
   data() {
   return {
         clients: {},
-        accounts:{},
+        accounts:[],
         loans:{}
       };
   },
@@ -22,7 +22,8 @@ createApp({
             
           this.clients= res.data         
           this.accounts = this.clients.accounts.sort((a,b) => a.id - b.id);
-          this.loans = this.clients.loans.sort((a,b) => b.id - a.id);
+          this.loans = this.clients.loans.sort((a,b) => b.id - a.id);          
+    console.log(this.accounts)
 
           })
           .catch(err=> console.log(err))
@@ -40,10 +41,19 @@ createApp({
       if (error){
         alert(`Accounts limit reached`)
       }
-    } )
+    } )    
+  },
 
-
-    
+  deleteAccount(id){
+    console.log(id)
+    axios.patch(`/api/clients/current/accounts/${id}`)
+    .then(res => {
+      console.log(res);
+      this.loadData()
+      
+    })
+    .catch(err => console.log(err))
+    console.log(this.accounts)
   }
 
 

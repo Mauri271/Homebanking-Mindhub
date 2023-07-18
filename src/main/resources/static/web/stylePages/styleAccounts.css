@@ -87,6 +87,10 @@ main{
   min-height: 85vh;
 }
 
+footer{
+  margin-top: 11rem !important;
+}
+
 
 .navbar-toggler{
   border: 1px solid rgb(29, 183, 218);

@@ -108,6 +108,7 @@ p{
 
 .card:hover .card-inner {
     transform: rotateY(-180deg);
+    box-shadow: none;
 }
 
 .chipVisa{
@@ -182,4 +183,10 @@ section{
     width:auto;
 
 }
+
+.expired-card {
+    /* Estilos para las tarjetas expiradas */
+    background-color: rgb(108, 6, 6);
+  }
+  
 

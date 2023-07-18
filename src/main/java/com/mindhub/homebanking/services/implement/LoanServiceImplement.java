@@ -7,6 +7,7 @@ import com.mindhub.homebanking.services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
@@ -28,5 +29,10 @@ public class LoanServiceImplement implements LoanService {
                 .stream()
                 .map(LoanDTO::new)
                 .collect(toSet());
+    }
+
+    @Override
+    public List<Loan> getAllLoans() {
+        return loanRepository.findAll();
     }
 }

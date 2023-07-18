@@ -106,12 +106,12 @@
 
     <section class="font-monospace d-flex flex-column justify-content-center gap-2" v-if="cards.length == 0">
 
-      <h3 v-if="cards.length < 6 " class="text-center text-white">Create card</h3>
+      <h3  class="text-center text-white">Create card</h3>
 
     </section>
 
     <div>
-      <a v-if="cards.length < 6 " href="../htmlPages/createCard.html"
+      <a href="../htmlPages/createCard.html"
         class=" text-center justify-content-center"><button
           class="bg-gradient text-bg-dark text-center justify-content-center btn border-light">Request a
           card</button></a>
@@ -122,8 +122,11 @@
 
     <section class="d-flex flex-column justify-content-center align-items-center flex-wrap mb-3 mt-5" v-else-if>
 
-      <div class="d-flex flex-row text-center flex-wrap mb-3" v-for="card of cards">
-        <div class="card d-flex m-1 " v-if="card.cardColor === 'GOLD' && card.cardType === 'CREDIT'">
+      <div class="d-flex flex-column text-center flex-wrap mb-3 justify-content-center align-items-center " v-for="card of cards"  :class="{ 'expired-card': card.cardExpired }">
+
+
+        <div class="card d-flex m-1 " v-if="card.cardColor === 'GOLD' && card.cardType === 'CREDIT'  && card.active == true">
+          <p v-if="card.cardExpired" class="expiration-text">Card Expired</p>
           <div class="card-inner "
             style="background: linear-gradient(-45deg, rgb(171, 146, 3), rgba(0, 0, 0, 0.598)  )">
             <div class="front">
@@ -141,7 +144,7 @@
               </div>
               <div class="card-holder card-text d-flex justify-content-between">
                 <p>{{card.cardHolder}}</p>
-                <p>{{card.thruDate.slice(0, -3)}}</p>
+                <p>{{card.thruDate}}</p>
               </div>
               <div class="mt-3 d-flex justify-content-end">
                 <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
@@ -164,11 +167,16 @@
               <div class="row signature">
                 <p>MINDHUB S.A</p>
               </div>
-            </div>
-          </div>
+            </div>            
+          </div>             
         </div>
 
-        <div class="card d-flex m-1" v-else-if="card.cardColor === 'TITANIUM' && card.cardType === 'CREDIT'">
+
+        <button class="btn w-50 text-white mt-1" v-if="card.cardColor === 'GOLD' && card.cardType === 'CREDIT'  && card.active == true" @click="deleteCard(card.id)">Delete Card</button>
+  
+
+        <div class="card d-flex m-1" v-else-if="card.cardColor === 'TITANIUM' && card.cardType === 'CREDIT' && card.active == true">
+          <p v-if="card.cardExpired" class="expiration-text">Card Expired</p>
           <div class="card-inner" style="background: linear-gradient(45deg, rgb(2, 2, 2), rgb(6, 3, 3)  )">
             <div class="front">
               <img src="../resources/pantera.jpg" class="map-img">
@@ -184,8 +192,8 @@
                 <p>VALID THRU</p>
               </div>
               <div class="card-holder card-text d-flex justify-content-between">
-                <p>{{card.cardHolder}}</p>
-                <p>{{card.thruDate.slice(0, -3)}}</p>
+                <p>{{card.cardHolder}}</p>                
+                <p>{{card.thruDate}}</p>
               </div>
               <div class="mt-3 d-flex justify-content-end">
                 <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
@@ -210,9 +218,13 @@
               </div>
             </div>
           </div>
-        </div>
+            </div>
 
-        <div class="card d-flex m-1" v-else-if="card.cardColor === 'SILVER' && card.cardType === 'CREDIT'">
+            <button class="btn w-50 text-white mt-1" v-if="card.cardColor === 'TITANIUM' && card.cardType === 'CREDIT'  && card.active == true" @click="deleteCard(card.id)">Delete Card</button>
+
+
+        <div class="card d-flex m-1" v-else-if="card.cardColor === 'SILVER' && card.cardType === 'CREDIT' && card.active == true">
+          <p v-if="card.cardExpired" class="expiration-text">Card Expired</p>
           <div class="card-inner"
             style="background: linear-gradient(-45deg, rgba(90, 89, 86, 0.717), rgb(65, 64, 57)  )">
             <div class="front">
@@ -229,8 +241,8 @@
                 <p>VALID THRU</p>
               </div>
               <div class="card-holder card-text d-flex justify-content-between">
-                <p>{{card.cardHolder}}</p>
-                <p>{{card.thruDate.slice(0, -3)}}</p>
+                <p>{{card.cardHolder}}</p>                
+                <p>{{card.thruDate}}</p>
               </div>
               <div class="mt-3 d-flex justify-content-end">
                 <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
@@ -254,15 +266,19 @@
                 <p>MINDHUB S.A</p>
               </div>
             </div>
-          </div>
+          </div>               
         </div>
+        
+        <button class="btn w-50 text-white mt-1" v-if="card.cardColor === 'SILVER' && card.cardType === 'CREDIT'  && card.active == true" @click="deleteCard(card.id)">Delete Card</button>
+
       </div>
     </section>
 
     <section class="d-flex flex-column justify-content-center align-items-center mt-3 flex-wrap" v-else>
       
-      <div class="d-flex text-center flex-wrap mb-3 justify-content-center align-items-center " v-for="card of cards">
-        <div class="card d-flex m-1" v-if="card.cardColor === 'GOLD' && card.cardType === 'DEBIT'">
+      <div class="d-flex flex-column text-center flex-wrap mb-3 justify-content-center align-items-center " v-for="card of cards">
+
+        <div class="card d-flex m-1" v-if="card.cardColor === 'GOLD' && card.cardType === 'DEBIT' && card.active == true">
           <div class="card-inner "
             style="background: linear-gradient(-45deg, rgb(171, 146, 3), rgba(0, 0, 0, 0.598)  )">
             <div class="front">
@@ -279,8 +295,8 @@
                 <p>VALID THRU</p>
               </div>
               <div class="card-holder card-text d-flex justify-content-between">
-                <p>{{card.cardHolder}}</p>
-                <p>{{card.thruDate.slice(0, -3)}}</p>
+                <p>{{card.cardHolder}}</p>                
+                <p>{{card.thruDate}}</p>
               </div>
               <div class="mt-3 d-flex justify-content-end">
                 <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
@@ -306,8 +322,10 @@
             </div>
           </div>
         </div>
+        <button class="btn w-50 text-white mt-1" v-if="card.cardColor === 'GOLD' && card.cardType === 'DEBIT'  && card.active == true" @click="deleteCard(card.id)">Delete Card</button>
 
-        <div class="card d-flex m-1" v-else-if="card.cardColor === 'TITANIUM' && card.cardType === 'DEBIT'">
+
+        <div class="card d-flex m-1" v-else-if="card.cardColor === 'TITANIUM' && card.cardType === 'DEBIT' && card.active == true">
           <div class="card-inner" style="background: linear-gradient(45deg, rgb(2, 2, 2), rgb(6, 3, 3)  )  ">
             <div class="front">
               <img src="../resources/pantera.jpg" class="map-img">
@@ -324,7 +342,7 @@
               </div>
               <div class="card-holder card-text d-flex justify-content-between">
                 <p>{{card.cardHolder}}</p>
-                <p>{{card.thruDate.slice(0, -3)}}</p>
+                <p>{{card.thruDate}}</p>
               </div>
               <div class="mt-3 d-flex justify-content-end">
                 <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
@@ -350,8 +368,10 @@
             </div>
           </div>
         </div>
+        <button class="btn w-50 text-white mt-1" v-if="card.cardColor === 'TITANIUM' && card.cardType === 'DEBIT'  && card.active == true" @click="deleteCard(card.id)">Delete Card</button>
 
-        <div class="card d-flex m-1" v-else-if="card.cardColor === 'SILVER' && card.cardType === 'DEBIT'">
+
+        <div class="card d-flex m-1" v-else-if="card.cardColor === 'SILVER' && card.cardType === 'DEBIT' && card.active == true">
           <div class="card-inner"
             style="background: linear-gradient(-45deg, rgba(90, 89, 86, 0.717), rgb(65, 64, 57)  )">
             <div class="front">
@@ -369,7 +389,7 @@
               </div>
               <div class="card-holder card-text d-flex justify-content-between">
                 <p>{{card.cardHolder}}</p>
-                <p>{{card.thruDate.slice(0, -3)}}</p>
+                <p>{{card.thruDate}}</p>
               </div>
               <div class="mt-3 d-flex justify-content-end">
                 <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
@@ -394,8 +414,10 @@
               </div>
             </div>
           </div>
-
         </div>
+        <button class="btn w-50 text-white mt-1" v-if="card.cardColor === 'SILVER' && card.cardType === 'DEBIT'  && card.active == true" @click="deleteCard(card.id)">Delete Card</button>
+
+
       </div>
 
 
@@ -404,7 +426,7 @@
 
   </main>
 
-  <footer class="footer mt-5">
+  <footer class="footer">
     <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark"
       transparent="false" show-symbol-logo="true"></div>
   </footer>

@@ -13,6 +13,8 @@ public class AccountDTO {
     private double balance;
     private Set<TransactionDTO> transaction;
 
+    private Boolean deleted;
+
 
 
     public AccountDTO(Account account) {
@@ -21,6 +23,7 @@ public class AccountDTO {
         this.date = account.getDate();
         this.balance = account.getBalance();
         this.transaction = account.getTransactions().stream().map(TransactionDTO::new).collect(Collectors.toSet());
+        this.deleted = account.getDeleted();
     }
 
     public Long getId() {
@@ -41,5 +44,9 @@ public class AccountDTO {
 
     public Set<TransactionDTO> getTransaction() {
         return transaction;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
     }
 }

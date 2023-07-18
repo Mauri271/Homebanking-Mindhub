@@ -10,7 +10,9 @@ public interface CardService {
 
     Card findCardByNumber(String number);
 
+    Card findById(Long id);
+
     void saveCard(Card card);
 
-    boolean existsByOwnerAndCardTypeAndCardColor(Client client, CardType cardType, CardColor cardColor);
+    boolean existsByOwnerAndCardTypeAndCardColorAndIsActive(Client client, CardType cardType, CardColor cardColor, Boolean isActive );
 }

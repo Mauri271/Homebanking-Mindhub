@@ -77,9 +77,11 @@
         </h2>
       </div>
       <div>
-        <section class="container col-12 d-flex justify-content-center flex-wrap gap-5">
-          <div v-for="client of accounts">
-            <div id="card" class="card col-4" style="width: 20rem;">
+
+          
+        <section class="container col-12 d-flex justify-content-center center flex-wrap gap-5" >
+          <div v-for="client of accounts" >
+            <div id="card" class="card col-4 " style="width: 20rem;" v-if="client.deleted == false">
               <img src="../resources/account.jpg" class="card-img-top logo-card " alt="...">
               <div class="card-body bg-gradient">
                 <h5 class="card-title text-center gap-1"> <strong> Account: </strong>
@@ -91,7 +93,13 @@
                 <a class="text-center" :href="'../htmlPages/account.html?id='+client.id"><button class="btn border text-white" type="button">See transactions</button></a>
               </ul>
             </div>
+            <div   class="d-flex align-items-center justify-content-center">
+              <button class="btn w-50 text-white mt-1 " v-if="client.deleted === false" @click="deleteAccount(client.id)">Delete Account</button>
+            </div>
+             
           </div>
+         
+
         </section>    
       </div>
     </div>
@@ -177,7 +185,7 @@
 
   </main>
 
-  <footer id="coin" class="mt-5">
+  <footer id="coin">
     <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark"
       transparent="false" show-symbol-logo="true"></div>
   </footer>

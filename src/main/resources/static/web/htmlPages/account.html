@@ -114,7 +114,7 @@
 
 
     <!-- ------------------------Account Transactions---------------------- -->
-    <section class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 col-8 h-100 ">
+    <section class="container-fluid d-flex flex-column justify-content-center align-items-center gap-3 col-8 h-100 " v-if="!hidden">
       <h3 class="text-white font-monospace text-center">Account {{account.number}}'s transactions</h3>
       <div class="wrapper box">
         <div class="tableWrapper">
@@ -149,6 +149,10 @@
           </table>
         </div>
       </div>
+    </section>
+
+    <section v-if="hidden">
+      <h1 class="text-center">Your account no longer exists</h1>
     </section>
     
     
