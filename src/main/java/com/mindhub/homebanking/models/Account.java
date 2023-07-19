@@ -2,6 +2,7 @@ package com.mindhub.homebanking.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mindhub.homebanking.enums.AccountType;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,14 +33,17 @@ public class Account {
 
     private Boolean deleted;
 
+    private AccountType accountType;
+
 
     public Account(){}
 
-    public Account(String number, LocalDate date, Double balance, Boolean deleted){
+    public Account(String number, LocalDate date, Double balance, Boolean deleted, AccountType accountType){
         this.number = number;
         this.date = date;
         this.balance = balance;
         this.deleted = deleted;
+        this.accountType = accountType;
     }
 
 
@@ -85,6 +89,14 @@ public class Account {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     @JsonIgnore

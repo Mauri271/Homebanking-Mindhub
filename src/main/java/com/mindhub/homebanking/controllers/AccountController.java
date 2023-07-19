@@ -1,6 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.AccountDTO;
+import com.mindhub.homebanking.enums.AccountType;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Transaction;
@@ -47,8 +48,8 @@ public class AccountController {
     }
 
 
-    @PostMapping(path = "/clients/current/accounts")
-    public ResponseEntity<Object> accountCreator(Authentication authentication){
+    @PostMapping(path = "/clients/current/accounts/{accountType}")
+    public ResponseEntity<Object> accountCreator(Authentication authentication, @PathVariable AccountType accountType){
 
          String randomNum;
 
@@ -63,7 +64,7 @@ public class AccountController {
         if (newAccounts.size() == 3) {
             return new ResponseEntity<>("Max amount of accounts reached", HttpStatus.FORBIDDEN);
         } else {
-            Account account = new Account(randomNum, LocalDate.now(),0.0,false);
+            Account account = new Account(randomNum, LocalDate.now(),0.0,false,accountType);
             client.addAccounts(account);
            accountService.saveAccount(account);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -87,7 +88,11 @@ public class AccountController {
 
         if(!account.getId().equals(id)){
             return new ResponseEntity<>("Wrong card", HttpStatus.FORBIDDEN);
-        } else {
+        } if(account.getBalance() > 0) {
+            return new ResponseEntity<>("You can't delete an account with money", HttpStatus.FORBIDDEN);
+        }
+
+        else {
 
             account.setDeleted(true);
 

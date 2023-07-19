@@ -5,7 +5,7 @@ createApp({
   return {
         clients: {},
         accounts:[],
-        loans:{}
+        loans:{},
       };
   },
 
@@ -29,20 +29,58 @@ createApp({
           .catch(err=> console.log(err))
   },
 
-  createAccount(){
-    axios.post("/api/clients/current/accounts")
-    .then(response => {
-      if( response.status == 201){
-        this.loadData()
-        console.log(response.status)
-      } 
-    }).catch(error => {
-      console.log(error)
-      if (error){
-        alert(`Accounts limit reached`)
-      }
-    } )    
+
+
+  openModal() {
+    document.getElementById('confirm').style.display = 'block';
   },
+
+ closeModal() {
+    document.getElementById('confirm').style.display = 'none';
+  },
+
+  createAccount(accountType) {  
+        axios.post(`/api/clients/current/accounts/${accountType}`)
+        .then(response => {
+          if( response.status == 201){
+            this.loadData()
+            console.log(response.status)
+          } 
+        }).catch(error => {
+          console.log(error)
+
+        } )    
+      
+    console.log(`Crear cuenta de tipo: ${accountType}`);
+  },
+//   confirmAccount() {
+//     document.getElementById('confirm').style.display = 'block';
+
+//     if(this.confirmAccount()){
+//       createAccount();{
+//         axios.post(`/api/clients/current/accounts${accountType}`)
+//         .then(response => {
+//           if( response.status == 201){
+//             this.loadData()
+//             console.log(response.status)
+//           } 
+//         }).catch(error => {
+//           console.log(error)
+//           if (error){
+//             alert(`Accounts limit reached`)
+//           }
+//         } )    
+//       }
+//     }
+
+
+//   },
+
+// closeModal() {
+//     document.getElementById('confirm').style.display = 'none';
+//   },
+
+
 
   deleteAccount(id){
     console.log(id)

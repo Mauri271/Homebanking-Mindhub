@@ -14,4 +14,6 @@ public interface LoanService {
 
     List<Loan> getAllLoans();
 
+    void saveLoan(Loan loan);
+
 }

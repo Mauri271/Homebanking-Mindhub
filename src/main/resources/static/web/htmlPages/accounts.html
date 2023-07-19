@@ -66,14 +66,27 @@
   <main id="app" class="d-flex flex-column align-items-center justify-content-center" >   
     
     
+
+    <div id="confirm" class="modal">
+      <div class="modal-content bg-dark text-white d-flex gap-2">
+        <span class="close btn" @click="closeModal()">&times;</span>
+        <h4>Select Account Type</h4>
+        <div class="bg-dark text-white d-flex gap-1 ">
+          <button   @click="createAccount('SAVING')"  class="btn text-white">Savings account</button>
+          <button @click="createAccount('CHECKING')"  class="btn text-white">Checking account</button>
+        </div>
+      </div>
+    </div>
+    
+    
     <h1 class="text-center font-monospace mt-5">Welcome {{clients.firstName}} {{clients.lastName}}, take a look to your accounts</h1>
     <h2 class="text-center text-white font-monospace mt-5">Accounts</h2>
     <section class=" d-flex flex-column align-items-center justify-content-around flex-wrap">
-
     <div class="d-flex flex-column gap-3 p-2">
       <div class=" d-flex justify-content-center align-items-center" v-if="clients.accounts.length  < 3">
         <h2 class="font-monospace text-white">
-          <button class="bg-gradient text-bg-dark justify-content-center btn border-light" type="submit"   @click="createAccount()">Create Account</button>
+          <button @click="openModal()" class="btn text-white">Crear cuenta</button>
+          <!-- <button class="bg-gradient text-bg-dark justify-content-center btn border-light" type="submit"   @click="createAccount()">Create Account</button> -->
         </h2>
       </div>
       <div>
@@ -87,6 +100,7 @@
                 <h5 class="card-title text-center gap-1"> <strong> Account: </strong>
                    {{client.number}}</h5>
               </div>
+              <p class="text-center">{{client.accountType}}</p>
               <ul class="list-group list-group-flush p-3">
                 <li class="list-group-item text-center accountList"><strong>Creation Date:</strong>  {{client.date}}</li>
                 <li class="list-group-item text-center accountList"><strong>Crypto Holdings in USDT:</strong> ${{client.balance.toLocaleString('en-US')}}</li>

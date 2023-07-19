@@ -27,8 +27,7 @@ import java.util.Set;
 import static java.util.stream.Collectors.toSet;
 
 @RestController
-@RequestMapping
-        ("/api")
+@RequestMapping("/api")
 public class LoanController {
 
     @Autowired
@@ -101,6 +100,41 @@ public class LoanController {
             accountService.saveAccount(account);
 
             return new ResponseEntity<>("Loan created", HttpStatus.CREATED);
+        }
+    }
+
+
+    @PostMapping(path="/loans/adminLoans")
+    public ResponseEntity<Object> createNewLoan(Authentication authentication, @RequestBody LoanDTO loanDTO){
+
+        Client client = clientService.findClientByEmail(authentication.getName());
+        Loan loan = new Loan(loanDTO.getName(), loanDTO.getMaxAmount(), loanDTO.getPayments(), loanDTO.getInterest());
+
+        if(client == null){
+            return new ResponseEntity<>("Vos no sos admin pibe", HttpStatus.FORBIDDEN);
+        }
+
+        if(loanDTO.getName().equals("") || loanDTO.getMaxAmount() <= 0 || loanDTO.getInterest() <= 0 || loanDTO.getPayments() == null){
+            new ResponseEntity<>("ta todo mal", HttpStatus.FORBIDDEN);
+        }
+
+        if (loanDTO.getName().equals("")){
+            return new ResponseEntity<>("Loan type can't be empty", HttpStatus.FORBIDDEN);
+        }
+
+        if(loanDTO.getMaxAmount() <= 0){
+            return new ResponseEntity<>("Loan amount can't be 0 or less", HttpStatus.FORBIDDEN);
+
+        }
+
+        if (loanDTO.getInterest() <= 0){
+            return new ResponseEntity<>("Loan interest can't be 0 or less", HttpStatus.FORBIDDEN);
+
+        }
+        else{
+            loanService.saveLoan(loan);
+            return new ResponseEntity<>("Loan created", HttpStatus.CREATED);
+
         }
     }
 

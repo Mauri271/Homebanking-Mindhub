@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../stylePages/styleAccounts.css">
+  <link rel="stylesheet" href="../stylePages/transfer.css">  
+  <link rel="stylesheet" href="sweetalert2.min.css">
+  <link rel="shortcut icon" href="../resources/echanizBank.png" type="image/x-icon">
+  
+  <title>Transactions</title>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container col-12">
+<div class="col-2">
+  <a class="navbar-brand" href="#"><img class="logo" src="../resources/echanizBank.png" alt="logo"></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</div>
+          <div class="d-flex align-items-between">
+            <div class="d-flex gap-3">
+              <a href="../htmlPages/login.html">
+                <button class="btn btn-secondary" type="button" @click="logOut()">Log out</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <main id="app">
+
+
+    <section class="mt-3 mb-5 flex-column d-flex justify-content-center align-items-center ">
+      <h2 class="text-white text-center">Request a Loan</h2>
+
+      <form class="text-white d-flex flex-column align-items-center justify-content-center mt-5 bg-gradient w-50"
+        @submit.prevent>
+   
+
+        <div class="d-flex flex-column align-items-center justify-content-center m-2 mt-4">
+          <legend class="text-center">Loan Type</legend>
+          <div class="d-flex justify-content-center w-100">
+            <label for="loanType" >
+              <input placeholder="Loan Type" type="text" name="loanType" id="loanType" class="w-100 text-center" v-model="object.name" >
+            </label>
+          </div>
+        </div>
+
+      
+
+        <div class="d-flex flex-column align-items-center justify-content-center m-2">
+          <legend class="text-center">Max Amount</legend>
+          <div class="d-flex justify-content-center w-100">                  
+            <label for="amount">
+              <input v-model="object.maxAmount"  placeholder="Max Amount" type="number" class="text-dark w-100 text-center" name="amount" id="amount">
+            </label>
+          </div>
+        </div>
+
+
+        <div class="d-flex flex-column align-items-center justify-content-center m-2">
+          <legend class="text-center">Payments</legend>
+          <div class="d-flex justify-content-center w-100">
+            <label for="payments" >
+              <select v-model="object.payments" name="payments" id="payments" >
+                <option v-for="payment of payments" class="w-100 text-center" >{{payment}}</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        
+        <div class="d-flex flex-column align-items-center justify-content-center m-2">
+          <legend class="text-center">Interest</legend>
+          <div class="d-flex justify-content-center w-100">                  
+            <label for="interest">
+              <input v-model="object.interest" placeholder="Interest" type="text" class="text-dark w-100 text-center" name="interest" id="interest">
+            </label>
+          </div>
+        </div>
+
+
+        <button class="bg-gradient text-bg-dark text-center justify-content-center btn border-light mt-3 w-50" type="submit" @click="createLoan()">Create Loan</button>
+
+      </form>
+    </section>
+
+  </main>
+
+  <footer id="coin">
+    <div class="d-flex" id="coinmarketcap-widget-marquee" coins="1,1027,825,2,74,5426" currency="USD" theme="dark"
+      transparent="false" show-symbol-logo="true"></div>
+  </footer>
+
+  <script src="sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="../JsPages/adminLoans.js"></script>
+
+</body>
+
+</html>

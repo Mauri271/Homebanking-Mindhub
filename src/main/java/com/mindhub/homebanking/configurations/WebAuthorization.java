@@ -21,11 +21,12 @@ class WebAuthorization {
 
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/clients/current/cards", "/api/clients/current/accounts", "/api/transactions", "/api/loans").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST,  "/api/loans/adminLoans").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/{id}", "clients/current/accounts/{id}").hasAuthority("CLIENT")
-                .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout").permitAll()
-                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients").hasAuthority("ADMIN")
-                .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**", "/api/loans").hasAuthority("CLIENT");
+                .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout", "/api/loans").permitAll()
+                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html" ).hasAuthority("ADMIN")
+                .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT");
 
 
 

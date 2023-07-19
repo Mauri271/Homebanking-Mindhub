@@ -1,5 +1,6 @@
 package com.mindhub.homebanking;
 
+import com.mindhub.homebanking.enums.AccountType;
 import com.mindhub.homebanking.enums.CardColor;
 import com.mindhub.homebanking.enums.CardType;
 import com.mindhub.homebanking.models.*;
@@ -39,10 +40,10 @@ public class HomebankingApplication {
 
 //--------------------------------------------------------------------------------------------
 
-			Account account1 = new Account("VIN-001", LocalDate.now(), 2000.0,false);
-			Account account2 = new Account("VIN-002", LocalDate.now().plusDays(1), -16000.0,false);
-			Account account3 = new Account("VIN-003", LocalDate.now().plusDays(1), 9000.0,false);
-			Account account4 = new Account("VIN-004", LocalDate.now().plusDays(1), 5500.0, false);
+			Account account1 = new Account("VIN-001", LocalDate.now(), 2000.0,false, AccountType.SAVING);
+			Account account2 = new Account("VIN-002", LocalDate.now().plusDays(1), -16000.0,false, AccountType.CHECKING);
+			Account account3 = new Account("VIN-003", LocalDate.now().plusDays(1), 9000.0,false, AccountType.SAVING);
+			Account account4 = new Account("VIN-004", LocalDate.now().plusDays(1), 5500.0, false,AccountType.CHECKING);
 			client1.addAccounts(account1);
 			client1.addAccounts(account2);
 			client2.addAccounts(account3);

@@ -15,6 +15,7 @@ import static java.util.stream.Collectors.toSet;
 @Service
 public class LoanServiceImplement implements LoanService {
 
+
     @Autowired
     private LoanRepository loanRepository;
     @Override
@@ -35,4 +36,11 @@ public class LoanServiceImplement implements LoanService {
     public List<Loan> getAllLoans() {
         return loanRepository.findAll();
     }
+
+    @Override
+    public void saveLoan(Loan loan) {
+        loanRepository.save(loan);
+    }
+
+
 }

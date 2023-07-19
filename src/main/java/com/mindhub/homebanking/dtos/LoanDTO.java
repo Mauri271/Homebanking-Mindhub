@@ -13,6 +13,8 @@ public class LoanDTO {
     private Double interest;
     private Set<Integer> payments = new HashSet<>();
 
+    public LoanDTO() {
+    }
 
     public LoanDTO(Loan loan) {
         this.name = loan.getName();
