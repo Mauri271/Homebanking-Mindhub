@@ -96,15 +96,13 @@
       </div>
     </div>
 
-    <div class="mb-1" v-if="cards.length == 0">
-      <h1>You have no cards</h1>
+
+
+    <div class="m-1" >
+      <h1>Card</h1>
     </div>
 
-    <div class="m-1" v-else>
-      <h1>Take a look to your cards</h1>
-    </div>
-
-    <section class="font-monospace d-flex flex-column justify-content-center gap-2" v-if="cards.length == 0">
+    <section class="font-monospace d-flex flex-column justify-content-center gap-2" v-if="cards.length == 0 || cards.length < 6">
 
       <h3  class="text-center text-white">Create card</h3>
 
@@ -120,7 +118,7 @@
 
     <!-- ------------------------------------ CARDS SECTION ------------------------------ -->
 
-    <section class="d-flex flex-column justify-content-center align-items-center flex-wrap mb-3 mt-5" v-else-if>
+    <section class="d-flex flex-column justify-content-center align-items-center flex-wrap mb-3 mt-5" v-else>
 
       <div class="d-flex flex-column text-center flex-wrap mb-3 justify-content-center align-items-center " v-for="card of cards"  :class="{ 'expired-card': card.cardExpired }">
 

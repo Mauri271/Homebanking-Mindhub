@@ -53,50 +53,28 @@ createApp({
       
     console.log(`Crear cuenta de tipo: ${accountType}`);
   },
-//   confirmAccount() {
-//     document.getElementById('confirm').style.display = 'block';
-
-//     if(this.confirmAccount()){
-//       createAccount();{
-//         axios.post(`/api/clients/current/accounts${accountType}`)
-//         .then(response => {
-//           if( response.status == 201){
-//             this.loadData()
-//             console.log(response.status)
-//           } 
-//         }).catch(error => {
-//           console.log(error)
-//           if (error){
-//             alert(`Accounts limit reached`)
-//           }
-//         } )    
-//       }
-//     }
-
-
-//   },
-
-// closeModal() {
-//     document.getElementById('confirm').style.display = 'none';
-//   },
-
 
 
   deleteAccount(id){
     console.log(id)
     axios.patch(`/api/clients/current/accounts/${id}`)
     .then(res => {
-      console.log(res);
+      alert(res.data)
       this.loadData()
       
     })
-    .catch(err => console.log(err))
-    console.log(this.accounts)
+    .catch(err => {
+      console.log(err.response)
+      alert(err.response.data)
+    })
   }
 
 
-  }
+  },
 
+
+
+  
 
 
 }).mount('#app')

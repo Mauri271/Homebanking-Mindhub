@@ -68,9 +68,10 @@ const app = createApp({
         })
   },
     wrongTransfer(){
-      console.log(this.transferObject.originAccount, this.transferObject.destinationAccount, this.transferObject.amount,this.transferObject.description, )
+
       const selectedAccount = this.accounts.find(account =>  account.number == this.transferObject.originAccount).balance
-      console.log(selectedAccount)
+
+    
       if(this.transferObject.originAccount == "" && this.transferObject.destinationAccount == "" && this.transferObject.amount == "" && this.transferObject.description == ""){
           Swal.fire({
               icon: 'error',

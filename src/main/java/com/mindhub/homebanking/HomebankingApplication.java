@@ -103,16 +103,6 @@ public class HomebankingApplication {
 			loan2.addClientLoans(clientLoan2);
 			clientLoanRepository.save(clientLoan2);
 
-			ClientLoan clientLoan3 = new ClientLoan(100000.0, 24);
-			client2.addClientLoans(clientLoan3);
-			loan1.addClientLoans(clientLoan3);
-			clientLoanRepository.save(clientLoan3);
-
-			ClientLoan clientLoan4 = new ClientLoan(200000.0, 36);
-			client2.addClientLoans(clientLoan4);
-			loan3.addClientLoans(clientLoan4);
-			clientLoanRepository.save(clientLoan4);
-
 //------------------------------------------------------------------------------------------------
 
 			Card card1 = new Card("Melba Morel", CardType.DEBIT, CardColor.GOLD,"2047 4569 8025 9865",255,LocalDate.now(),LocalDate.now().plusYears(5), true);

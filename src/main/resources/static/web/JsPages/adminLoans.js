@@ -40,9 +40,9 @@ const app = createApp({
         console.log(this.object)
         axios.post('/api/loans/adminLoans',this.object)
         .then(res=>{
-            console.log(res)
+            alert(res.data)
         })
-        .catch(err => console.log(err))
+        .catch(err => alert(err.response.data))
     }
   }
 

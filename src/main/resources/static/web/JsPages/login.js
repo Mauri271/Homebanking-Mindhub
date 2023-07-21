@@ -56,7 +56,6 @@ createApp({
       icon: 'error',
       title: 'Oops...',
       text: 'Please fill all the fields',
-      background:'#0000'
     })
   },
 

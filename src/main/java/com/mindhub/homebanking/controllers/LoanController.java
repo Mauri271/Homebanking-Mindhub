@@ -1,6 +1,5 @@
 package com.mindhub.homebanking.controllers;
 
-import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.dtos.LoanDTO;
 import com.mindhub.homebanking.dtos.LoanRequestDTO;
 import com.mindhub.homebanking.enums.TransactionType;
@@ -10,9 +9,7 @@ import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.models.ClientLoan;
 import com.mindhub.homebanking.models.Loan;
 import com.mindhub.homebanking.repositories.*;
-import com.mindhub.homebanking.services.AccountService;
-import com.mindhub.homebanking.services.ClientService;
-import com.mindhub.homebanking.services.LoanService;
+import com.mindhub.homebanking.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +20,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
-
-import static java.util.stream.Collectors.toSet;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -44,6 +40,12 @@ public class LoanController {
 
     @Autowired
     private LoanService loanService;
+
+    @Autowired
+    private ClientLoanService clientLoanService;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @Transactional
     @PostMapping("/loans")
@@ -141,5 +143,70 @@ public class LoanController {
     @GetMapping("/loans")
     public Set<LoanDTO> getAll() {
         return  loanService.getAll();
+    }
+
+    @Transactional
+    @PostMapping(path= "/loans/loanPayment")
+    public ResponseEntity<Object> loanPayment(Authentication authentication, @RequestParam Long clientLoanId, @RequestParam String accountNumber){
+
+        Client client = clientService.findClientByEmail(authentication.getName());
+        Set<ClientLoan> clientLoans = client.getClientLoans();
+
+        ClientLoan clientLoan1 = clientLoans.stream().filter(clientLoan -> clientLoan.getId().equals(clientLoanId))
+                .findFirst().orElse(null);
+
+
+        Account account1 = accountService.findByNumber(accountNumber);
+        Double feeToPay = clientLoan1.getAmount() / clientLoan1.getPayments();
+
+
+        if(client == null){
+            return new ResponseEntity<>("client not found", HttpStatus.FORBIDDEN);
+        }
+
+        if(clientLoan1 == null){
+            return new ResponseEntity<>("client loan not found", HttpStatus.FORBIDDEN);
+        }
+
+        if(account1 == null) {
+            return new ResponseEntity<>("account not found", HttpStatus.FORBIDDEN);
+        }
+
+        if( account1.getBalance() < feeToPay){
+            return new ResponseEntity<>("Not enough funds", HttpStatus.FORBIDDEN);
+        }
+
+        if (clientLoan1.getPayments() == 0) {
+            return new ResponseEntity<>("Loan Payed", HttpStatus.FORBIDDEN);
+        }
+
+        else {
+
+           account1.setBalance(account1.getBalance() - feeToPay);
+
+            Double amount = clientLoan1.getAmount() - feeToPay;
+           Integer payments = clientLoan1.getPayments() - 1;
+
+
+            clientLoan1.setAmount(amount);
+           clientLoan1.setPayments(payments);
+
+
+           client.addClientLoans(clientLoan1);
+
+           Transaction transaction = new Transaction(TransactionType.DEBIT, feeToPay,"Loan payment",LocalDateTime.now(),false);
+           account1.addTransactions(transaction);
+
+           transactionService.saveTransaction(transaction);
+           accountService.saveAccount(account1);
+
+           return new ResponseEntity<>("the loan installment has been paid", HttpStatus.ACCEPTED);
+
+
+
+
+        }
+
+
     }
 }
